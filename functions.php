@@ -152,3 +152,125 @@ function checkDefaultPassword($pass, $hashed_password) {
         // Kata sandi tidak cocok, tolak akses
     }
 }
+
+function uploadGambar($file, $uploadPath) {
+    $targetDir = $uploadPath;
+    $targetFile = $targetDir . basename($file["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION);
+
+    // Cek apakah file adalah gambar atau bukan
+    $check = getimagesize($file["tmp_name"]);
+    if($check !== false) {
+        echo "File adalah gambar - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File bukan gambar.";
+        $uploadOk = 0;
+    }
+
+    // Cek apakah file sudah ada
+    if (file_exists($targetFile)) {
+        echo "Maaf, file sudah ada.";
+        $uploadOk = 0;
+    }
+
+    // Batasi jenis file yang diizinkan (contoh: hanya menerima gambar JPEG)
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif") {
+        echo "Maaf, hanya file JPG, JPEG, PNG, dan GIF yang diperbolehkan.";
+        $uploadOk = 0;
+    }
+
+    // Cek jika $uploadOk bernilai 0, maka upload ditolak
+    if ($uploadOk == 0) {
+        echo "Maaf, file tidak diunggah.";
+    } else {
+        // Jika semuanya baik, coba untuk mengunggah file
+        if (move_uploaded_file($file["tmp_name"], $targetFile)) {
+            echo "File ". basename($file["name"]). " telah berhasil diunggah.";
+        } else {
+            echo "Maaf, ada kesalahan saat mengunggah file.";
+        }
+    }
+}
+
+function waktuUpload($timestamp) {
+    $now = time();
+    $diff = $now - $timestamp;
+
+    if ($diff < 60) {
+        return $diff . " detik yang lalu";
+    } elseif ($diff < 3600) {
+        $minutes = floor($diff / 60);
+        return $minutes . " menit yang lalu";
+    } elseif ($diff < 86400) {
+        $hours = floor($diff / 3600);
+        return $hours . " jam yang lalu";
+    } else {
+        $days = floor($diff / 86400);
+        return $days . " hari yang lalu";
+    }
+}
+
+// Contoh penggunaan
+$timestamp = strtotime("2023-10-20 12:00:00"); // Gantilah ini dengan timestamp unggahan Anda
+echo waktuUpload($timestamp);
+
+
+session_start();
+
+function isUserLoggedIn() {
+    // Periksa apakah pengguna memiliki sesi yang aktif
+    return isset($_SESSION['user_id']);
+}
+
+// Contoh penggunaan
+if (isUserLoggedIn()) {
+    echo "Pengguna telah login.";
+} else {
+    echo "Pengguna belum login.";
+}
+
+
+function generateRandomToken($length = 32) {
+    // Karakter yang diizinkan dalam token
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+    // Inisialisasi token kosong
+    $token = '';
+
+    // Generate token secara acak dengan panjang yang ditentukan
+    for ($i = 0; $i < $length; $i++) {
+        $token .= $characters[random_int(0, strlen($characters) - 1)];
+    }
+
+    return $token;
+}
+
+// Contoh penggunaan
+$randomToken = generateRandomToken();
+echo $randomToken;
+
+function encrypt($data, $key) {
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
+function decrypt($data, $key) {
+    $data = base64_decode($data);
+    $ivSize = openssl_cipher_iv_length('aes-256-cbc');
+    $iv = substr($data, 0, $ivSize);
+    $encrypted = substr($data, $ivSize);
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
+}
+
+// Contoh penggunaan
+$key = 'YourSecretKey'; // Gantilah dengan kunci rahasia Anda.
+$text = 'Hello, World!';
+$encrypted = encrypt($text, $key);
+echo "Encrypted: " . $encrypted . "<br>";
+$decrypted = decrypt($encrypted, $key);
+echo "Decrypted: " . $decrypted;
+
