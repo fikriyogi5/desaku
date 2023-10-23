@@ -274,3 +274,49 @@ echo "Encrypted: " . $encrypted . "<br>";
 $decrypted = decrypt($encrypted, $key);
 echo "Decrypted: " . $decrypted;
 
+
+function calculateAge($birthDate) {
+    $today = new DateTime();
+    $birthdate = new DateTime($birthDate);
+    $age = $today->diff($birthdate);
+    return $age->y;
+}
+
+// Example usage:
+$birthday = "1990-05-15";
+$age = calculateAge($birthday);
+echo "You are " . $age . " years old.";
+
+function greetBasedOnTime() {
+    $currentHour = date('G');
+    $greeting = "";
+
+    if ($currentHour >= 5 && $currentHour < 12) {
+        $greeting = "Selamat Pagi";
+    } elseif ($currentHour >= 12 && $currentHour < 17) {
+        $greeting = "Selamat Siang";
+    } elseif ($currentHour >= 17 && $currentHour < 20) {
+        $greeting = "Selamat Sore";
+    } else {
+        $greeting = "Selamat Malam";
+    }
+
+    return $greeting;
+}
+
+// Example usage:
+$greet = greetBasedOnTime();
+echo $greet;
+
+
+function calculateDueDate($startDate, $daysToAdd) {
+    $dueDate = date('Y-m-d', strtotime($startDate . ' + ' . $daysToAdd . ' days'));
+    return $dueDate;
+}
+
+// Example usage:
+$startDate = '2023-10-23';  // Today's date
+$daysToAdd = 7;  // Adding 7 days for the due date
+$dueDate = calculateDueDate($startDate, $daysToAdd);
+echo "Jatuh tempo: " . $dueDate;
+
