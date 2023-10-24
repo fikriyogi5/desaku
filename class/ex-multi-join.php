@@ -19,12 +19,12 @@ class Database
 
     public function getJoinedData()
     {
-        $query = "SELECT w.nama AS nama_warga, p.pekerjaan AS pekerjaan, pp.tahun AS tahun_pemilu, d.jumlah AS donasi, bp.bantuan AS bantuan_pemerintah
+        $query = "SELECT w.nama AS nama_warga, p.jumlah_bantuan AS jumlah_bantuan, pp.tahun AS tahun_pemilu, d.jumlah AS donasi, bp.bantuan AS bantuan_pemerintah
                   FROM warga w
                   JOIN bantuan_desa p ON w.nik = p.id_penerima
-                  JOIN sos_request pp ON w.id = pp.warga_id
-                  JOIN comments d ON w.id = d.warga_id
-                  JOIN laporan_warga bp ON w.id = bp.warga_id";
+                  JOIN sos_requests pp ON w.id = pp.user_id
+                  JOIN aduan d ON w.id = d.id
+                  JOIN laporan_warga bp ON w.id = bp.id_warga";
 
         $stmt = $this->conn->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ $joinedData = $database->getJoinedData();
 // Menampilkan hasil join
 foreach ($joinedData as $data) {
     echo "Nama Warga: " . $data['nama_warga'] . "<br>";
-    echo "Pekerjaan: " . $data['pekerjaan'] . "<br>";
+    echo "Pekerjaan: " . $data['jumlah_bantuan'] . "<br>";
     echo "Tahun Pemilu: " . $data['tahun_pemilu'] . "<br>";
     echo "Jumlah Donasi: " . $data['donasi'] . "<br>";
     echo "Bantuan Pemerintah: " . $data['bantuan_pemerintah'] . "<br>";

@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card-center">
                     </div>
                     <div class="card-center">
-                        <img src="public/img/login.png" class="center" width="150">
+                        <img src="img/login.png" class="center" width="150">
                         <form method="post" action="">
                             <div class="ps-3 pe-3">
                                 <h1 class="text-start font-800 font-40 mb-2">Selamat Datang!</h1>

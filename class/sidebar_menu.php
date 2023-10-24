@@ -1,22 +1,22 @@
 <div id="menu-sidebar-left-4" class="bg-white menu menu-box-left" data-menu-effect="menu-push" data-menu-width="310">
     <div class="d-flex">
         <a href="#" class="flex-fill icon icon-m text-center color-facebook border-right">
-            <i class="fab font-15 fa-facebook-f"></i>
+            <i class="fab font-17 fa-facebook-f"></i>
         </a>
         <a href="#" class="flex-fill icon icon-m text-center color-twitter border-right">
-            <i class="fab font-15 fa-twitter"></i>
+            <i class="fab font-17 fa-twitter"></i>
         </a>
         <a href="#" class="flex-fill icon icon-m text-center color-instagram border-right">
-            <i class="fab font-15 fa-instagram"></i>
+            <i class="fab font-17 fa-instagram"></i>
         </a>
         <a href="#" class="flex-fill icon icon-m text-center color-whatsapp border-right">
-            <i class="fab font-15 fa-whatsapp"></i>
+            <i class="fab font-17 fa-whatsapp"></i>
         </a>
         <a href="#" class="flex-fill icon icon-m text-center color-linkedin border-right">
-            <i class="fab font-15 fa-linkedin-in"></i>
+            <i class="fab font-17 fa-linkedin-in"></i>
         </a>
         <a href="#" class="close-menu flex-fill icon icon-m text-center color-red-dark">
-            <i class="fa font-15 fa-times"></i>
+            <i class="fa font-17 fa-times"></i>
         </a>
     </div>
     <div class="divider mb-3"></div>
@@ -50,11 +50,11 @@
             </a>
             <a href="#">
                 <i class="fa font-14 fa-camera color-green-dark"></i>
-                <span>Media</span>
+                <span>Tentang Aplikasi</span>
             </a>
             <a href="#" class="border-0">
                 <i class="fa font-14 fa-image color-teal-dark"></i>
-                <span>Contact</span>
+                <span>Hubungi Kami</span>
             </a>
         </div>
     </div>
@@ -83,14 +83,14 @@
         <div class="list-group list-custom-small list-icon-0">
             <a href="#" data-toggle-theme data-trigger-switch="switch-dark2-mode">
                 <i class="fa font-12 fa-moon color-yellow-dark rounded-s"></i>
-                <span>Dark Mode</span>
+                <span>Mode Malam</span>
                 <div class="custom-control small-switch ios-switch">
                     <input data-toggle-theme type="checkbox" class="ios-input" id="switch-dark2-mode">
                     <label class="custom-control-label" for="switch-dark2-mode"></label>
                 </div>
                 <i class="fa fa-angle-right"></i>
             </a>
-            <a data-trigger-switch="sidebar-12-switch-2" href="#">
+            <!-- <a data-trigger-switch="sidebar-12-switch-2" href="#">
                 <i class="fa font-14 fa-circle color-green-dark"></i>
                 <span>Active Mode</span>
                 <div class="custom-control small-switch ios-switch">
@@ -107,7 +107,7 @@
                     <label class="custom-control-label" for="sidebar-12-switch-3"></label>
                 </div>
                 <i class="fa fa-angle-right"></i>
-            </a>
+            </a> -->
         </div>
     </div>
 </div>

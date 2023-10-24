@@ -88,9 +88,7 @@ function generateHeader($headerOptions) {
     <title>' . $title . '</title>
 </head>
 <body class="theme-light" data-highlight="highlight-red" data-gradient="body-default">
-<div id="preloader">
-    <div class="spinner-border color-highlight" role="status"></div>
-</div>
+
 <div id="page">';
     if ($header_menu == 1) {
         $html .= '<div class="header header-fixed header-logo-center" style="transform: translateX(0px);">
@@ -111,25 +109,26 @@ function generateHeader($headerOptions) {
     }
     
     if ($footer_menu == 1) {
-        $html .= '<div id="footer-bar" class="footer-bar-1 ">
+        $html .= '<div id="footer-bar" class="footer-bar-4 ">
                 <a href="#" class="tab-link active-nav" data-tab="tab-1">
-                    <i class="fa fa-home"></i>
+                <img src="   https://cdn-icons-png.flaticon.com/512/4481/4481380.png " width="30" height="30" alt="" title="" class="img-small">
+
                     <span>Beranda</span>
                 </a>
                 <a href="#" class="tab-link" data-tab="tab-2">
-                    <i class="fa fa-bullhorn"></i>
+                <img src="   https://cdn-icons-png.flaticon.com/512/4481/4481070.png " width="30" height="30" alt="" title="" class="img-small">
                     <span>Info</span>
                 </a>
                 <a href="#" class="tab-link" data-tab="tab-3">
-                    <i class="fa fa-calendar"></i>
+                <img src="   https://cdn-icons-png.flaticon.com/512/4481/4481387.png " width="30" height="30" alt="" title="" class="img-small">
                     <span>Agenda</span>
                 </a>
                 <a href="#" class="tab-link" data-tab="tab-4">
-                    <i class="fa fa-comments"></i>
+                <img src="   https://cdn-icons-png.flaticon.com/512/4481/4481135.png " width="30" height="30" alt="" title="" class="img-small">
                     <span>sdssa</span>
                 </a>
                 <a href="#" class="tab-link" data-tab="tab-5">
-                    <i class="fa fa-cog"></i>
+                <img src="   https://cdn-icons-png.flaticon.com/512/4481/4481330.png " width="30" height="30" alt="" title="" class="img-small">
                     <span>Settings</span>
                 </a>
             </div>';
@@ -140,7 +139,7 @@ function generateHeader($headerOptions) {
 }
 function checkDefaultPassword($pass, $hashed_password) {
     if (password_verify($pass, $hashed_password)) {
-        echo '<a href="update-password.php" ><div class="ms-3 me-3 mb-5 alert alert-small rounded-s shadow-xl bg-red-dark" role="alert">
+        echo '<a href="update-password.php" ><div class=" alert alert-small rounded-s shadow-xl bg-red-dark" role="alert">
     <span><i class="fa fa-times"></i></span>
     <strong>Harap ubah password Anda!</strong>
     <button type="button" class="close color-white opacity-60 font-16" data-bs-dismiss="alert" aria-label="Close">×</button>

@@ -41,7 +41,7 @@ echo generateHeader($headerOptions);
                     <div class="content">
                         <div class="d-flex">
                             <div>
-                                <p class="color-highlight font-600 mb-n1">Service Invoice</p>
+                                <p class="color-highlight font-600 mb-n1"><?php echo $mhs['jenis_pekerjaan']; ?></p>
                                 <h1 class="mb-0 mt-2"><?php echo $mhs['nama']; ?></h1>
                             </div>
                             <div class="ms-auto align-self-center">
@@ -67,9 +67,9 @@ echo generateHeader($headerOptions);
                             <h5 class="col-6 text-start font-14">Alamat</h5>
                             <h5 class="col-6 text-end font-14 "><?php echo $mhs['alamat']; ?></h5>
                             <h5 class="col-6 text-start font-14">NIK</h5>
-                            <h5 class="col-6 text-end font-14 "><?php echo maskMiddleDigits($mhs['nik']); ?></h5>
+                            <h5 class="col-6 text-end font-14 "><?php echo $mhs['nik']; ?></h5>
                             <h5 class="col-6 text-start font-14">No. KK</h5>
-                            <h5 class="col-6 text-end font-14 "><?php echo maskMiddleDigits($mhs['kk']); ?></h5>
+                            <h5 class="col-6 text-end font-14 "><?php echo $mhs['kk']; ?></h5>
                             <h5 class="col-6 text-start font-14">Ayah</h5>
                             <h5 class="col-6 text-end font-14 "><?php echo $mhs['ayah']; ?></h5>
                             <h5 class="col-6 text-start font-14">Ibu</h5>

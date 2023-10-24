@@ -108,9 +108,9 @@
 
                         <div class="card ">
                             <div class="content mb-0">
-                                <h3>Modern Fields</h3>
+                                <!-- <h3>Modern Fields</h3> -->
                                 <p>
-                                    These boxes will react to them when you type or select a value.
+                                    Data yang di perbarui masuk dalam tahap verifikasi, harap cantumkan KTP beserta KK Anda ketika simpan.
                                 </p>
                                 <div class="input-style has-borders has-icon validate-field mb-4">
                                     <i class="fa fa-user"></i>

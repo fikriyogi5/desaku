@@ -11,8 +11,6 @@ require_once 'auth.php';
 
 $database = new Database($dbConfig);
 
-// $id = $_GET['id'];
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $warga = $database->read('warga', "id=".$_SESSION['user_id']."");
 
@@ -109,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div id="page">
             <div class="header header-fixed header-logo-center">
                 <a href="index.html" class="header-title">Ganti Password</a>
-                <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.php" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
                 <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
             </div>
                     <?php
@@ -123,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form method="post" action="" >
                         <input type="hidden" name="id" value="<?php echo $mhs['id']; ?>">
                     
-                        <div class="content mb-0">
+                        <div class="content mb-0 mt-5">
                             <h2 class="mb-0">Account Security</h2>
                             <p class="mb-4">
                                 Activate options or set different elements here that are different from basic fields.
