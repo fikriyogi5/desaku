@@ -122,6 +122,41 @@ class Database
             return false;
         }
     }
+    public function readDataFromFiveTables($wargaTable, $pekerjaanTable, $pemiluTable, $donasiTable, $bantuanTable, $condition = '', $limit = null)
+    {
+        $query = "SELECT w.nama, w.usia, p.pekerjaan, pem.tanggal_pemilu, d.jumlah_donasi, bp.jenis_bantuan
+                FROM $wargaTable AS w
+                LEFT JOIN $pekerjaanTable AS p ON w.id_pekerjaan = p.id
+                LEFT JOIN $pemiluTable AS pem ON w.id_warga = pem.id_warga
+                LEFT JOIN $donasiTable AS d ON w.id_warga = d.id_warga
+                LEFT JOIN $bantuanTable AS bp ON w.id_warga = bp.id_warga";
+        
+        if ($condition != '') {
+            $query .= " WHERE $condition";
+        }
+        
+        if ($limit !== null) {
+            $query .= " LIMIT $limit";
+        }
+
+        try {
+            $stmt = $this->conn->query($query);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+        // $db = new YourDatabaseClass();
+        // $data = $db->readDataFromFiveTables('warga', 'pekerjaan', 'pemilihan_pemilu', 'donasi', 'bantuan_pemerintah');
+
+        // $db = new YourDatabaseClass();
+        // $condition = 'w.usia > 30';
+        // $limit = 10;
+        // $data = $db->readDataWithConditionAndLimit('warga', 'pekerjaan', 'pemilihan_pemilu', 'donasi', 'bantuan_pemerintah', $condition, $limit);
+
+    }
+
+
     public function countData($table, $condition = '')
     {
         $query = "SELECT COUNT(*) as total FROM $table";

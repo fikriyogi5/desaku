@@ -157,7 +157,7 @@ function uploadGambar($file, $uploadPath) {
     $targetDir = $uploadPath;
     $targetFile = $targetDir . basename($file["name"]);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION);
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
     // Cek apakah file adalah gambar atau bukan
     $check = getimagesize($file["tmp_name"]);
@@ -214,11 +214,8 @@ function waktuUpload($timestamp) {
 }
 
 // Contoh penggunaan
-$timestamp = strtotime("2023-10-20 12:00:00"); // Gantilah ini dengan timestamp unggahan Anda
-echo waktuUpload($timestamp);
-
-
-session_start();
+// $timestamp = strtotime("2023-10-20 12:00:00"); // Gantilah ini dengan timestamp unggahan Anda
+// echo waktuUpload($timestamp);
 
 function isUserLoggedIn() {
     // Periksa apakah pengguna memiliki sesi yang aktif
@@ -226,11 +223,11 @@ function isUserLoggedIn() {
 }
 
 // Contoh penggunaan
-if (isUserLoggedIn()) {
-    echo "Pengguna telah login.";
-} else {
-    echo "Pengguna belum login.";
-}
+// if (isUserLoggedIn()) {
+//     echo "Pengguna telah login.";
+// } else {
+//     echo "Pengguna belum login.";
+// }
 
 
 function generateRandomToken($length = 32) {
@@ -249,8 +246,8 @@ function generateRandomToken($length = 32) {
 }
 
 // Contoh penggunaan
-$randomToken = generateRandomToken();
-echo $randomToken;
+// $randomToken = generateRandomToken();
+// echo $randomToken;
 
 function encrypt($data, $key) {
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
@@ -267,12 +264,12 @@ function decrypt($data, $key) {
 }
 
 // Contoh penggunaan
-$key = 'YourSecretKey'; // Gantilah dengan kunci rahasia Anda.
-$text = 'Hello, World!';
-$encrypted = encrypt($text, $key);
-echo "Encrypted: " . $encrypted . "<br>";
-$decrypted = decrypt($encrypted, $key);
-echo "Decrypted: " . $decrypted;
+// $key = 'YourSecretKey'; // Gantilah dengan kunci rahasia Anda.
+// $text = 'Hello, World!';
+// $encrypted = encrypt($text, $key);
+// echo "Encrypted: " . $encrypted . "<br>";
+// $decrypted = decrypt($encrypted, $key);
+// echo "Decrypted: " . $decrypted;
 
 
 function calculateAge($birthDate) {
@@ -283,9 +280,9 @@ function calculateAge($birthDate) {
 }
 
 // Example usage:
-$birthday = "1990-05-15";
-$age = calculateAge($birthday);
-echo "You are " . $age . " years old.";
+// $birthday = "1990-05-15";
+// $age = calculateAge($birthday);
+// echo "You are " . $age . " years old.";
 
 function greetBasedOnTime() {
     $currentHour = date('G');
@@ -305,8 +302,8 @@ function greetBasedOnTime() {
 }
 
 // Example usage:
-$greet = greetBasedOnTime();
-echo $greet;
+// $greet = greetBasedOnTime();
+// echo $greet;
 
 
 function calculateDueDate($startDate, $daysToAdd) {
@@ -315,8 +312,8 @@ function calculateDueDate($startDate, $daysToAdd) {
 }
 
 // Example usage:
-$startDate = '2023-10-23';  // Today's date
-$daysToAdd = 7;  // Adding 7 days for the due date
-$dueDate = calculateDueDate($startDate, $daysToAdd);
-echo "Jatuh tempo: " . $dueDate;
+// $startDate = '2023-10-23';  // Today's date
+// $daysToAdd = 7;  // Adding 7 days for the due date
+// $dueDate = calculateDueDate($startDate, $daysToAdd);
+// echo "Jatuh tempo: " . $dueDate;
 
