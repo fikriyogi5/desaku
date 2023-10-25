@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sistem Informasi Pemerintahan Daerah">
+    <meta name="author" content="Krucel">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://sipd.kemendagri.go.id/assets/plugins/images/indonesia-flag.png">
+    <title>Sistem Informasi Pemerintahan Daerah</title>
+    <link href="https://sipd.kemendagri.go.id/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://sipd.kemendagri.go.id/assets/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://sipd.kemendagri.go.id/assets/css/animate.css" rel="stylesheet">
+    <link href="https://sipd.kemendagri.go.id/assets/css/style.css" rel="stylesheet">
+    <link href="https://sipd.kemendagri.go.id/assets/dist/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/>
+    <link href="https://sipd.kemendagri.go.id/assets/css/colors/red-dark.css" id="theme" rel="stylesheet">
+    <link href="https://sipd.kemendagri.go.id/assets/css/extra_colors.css" id="theme" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    .title{
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      /*-webkit-transition: .1s all linear;*/
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.7) 30%, #000 50%, rgba(0,0,0,.7) 70%);
+      -webkit-mask-size: 200%;
+      animation: shine 2s linear infinite;
+    }
+    @keyframes  shine {
+      from { -webkit-mask-position: 150%; }
+      to { -webkit-mask-position: -50%; }
+    }
+    .setbulet {
+      animation: bulet-in 2s ease-in-out both; cursor: pointer;
+    }
+    .setbulet h3, .setbulet h4, .setbulet h5, .setbulet h6 { position: relative;top: 5px;left: 50%;margin-right: -50%;transform: translate(-48%, -48%);font-weight:bold }
+    .bulet {
+      border-radius: 50px; width: 88px; height: 88px;margin-left: auto;margin-right: auto; cursor: pointer; box-shadow: inset 0 0 4px #2e3642;
+    }
+    .bulet h3, .bulet h4, .bulet h5, .bulet h6 { position: relative;top: 10px;left: 50%;margin-right: -50%;transform: translate(-50%, -50%) }
+    .bulet i { position: relative;top: 15px;left: 27%;margin-right: -27%;transform: translate(-27%, -27%);font-size:20pt }
+    .bulet img { position: relative;top:10px;left:50%;margin-left:-30px;margin-right:-50px;width:60px }
+    
+    @keyframes  bulet-in {
+      0% { opacity: 0; transform: scale(0);}
+      80% { opacity: 0; transform: scale(0);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+
+    .pull-up { transition: all 0.25s ease; }
+    .pull-up:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0px 14px 24px rgba(62, 57, 107, 0.2); z-index: 999; box-shadow: inset 0 0 4px #2e3642;}
+
+    .wrapper-tengah{ padding-left:20px; padding-right:20px; margin-right: auto; margin-left: auto; width: 600px; }
+    @media (max-width:480px){.wrapper-tengah{ width: 90%; }}
+    @media (min-width:968px){.bulet-1{margin-left: 11%; }}
+
+    .text-outline {
+      color: #FFFFFF;
+      text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+    }
+    .jqvmap-zoomin, .jqvmap-zoomout{width:15px;height:15px;}
+    #vmap{min-width: 900px; min-height: 400px; margin:0 auto;border:2px solid #dcdfdf;}
+    #vmap-daerah{min-width: 900px; min-height: 400px; margin:0 auto;border:transparent;}
+    .running_man{
+        font-size: 15px;
+        color:#000;
+        z-index: 101;
+        background-color: yellow;
+        line-height: 30px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display:none;
+    }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div class="running_man">Sehubungan dengan pengembangan infrastruktur SIPD sehingga SIPD tidak dapat di akses pada tanggal 4 s.d. 5 September 2021. Mohon maaf atas ketidaknyamanannya.</div>
+    <div id="wrapper">
+                <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper-portal" style="margin-left:0px;min-height:650px;width:100%;">
+            <div class="portal-wrapper"></div><div class="col_md_12 col_sm_12 col_xs_12 m_t_0 p_t_2" style="position:fixed;background:yellow;width:100%;text-align:center;z-index:101;"></div><input type="hidden" name="0x69kEs9" value="bDNv4IQAIbgJ7YDQRLpD5I5xbz6wS3kefzTfPyIr" /><div class="col_md_12 col_sm_12 col_xs_12 m_t_0 p_t_2" style="position:fixed;background:yellow;width:100%;text-align:center;z-index:101;"></div>
+            <div class="container-fluid">
+                              <div class="row" style="margin-top:50px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wrapper-tengah">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 m-t-20 text-center">
+                                <img src="https://sipd.kemendagri.go.id/assets/plugins/images/admin-logo.png" alt="logo" class="img-shadow" width="80" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h2 class="text-outline text-center text-shadow">Sistem Informasi Pemerintahan Daerah</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="m-t-30 col-md-4 col-sm-4 col-xs-6 setbulet">
+                                                                <div class="bulet bg-info pull-up" onclick="window.location.replace('pusat?T9QccW8pQKjh2XHqpUBwY2@uFUaeHvZhhKnoLrmWuBw5DU/cnZYit14AC5fStJHExpoABchtlEau4GrqcBaAJnfNsm4WjtTnPW@9JtRlKCvIhr8f8xjRqAsh1POnyDhQ')">
+                                    <div style="margin:11px auto;width:50px;font-size:35px;"><img src="https://sipd.kemendagri.go.id/assets/plugins/images/planning.png"></div>
+                                </div>
+                                                                
+                                <div style="width:100%;margin:10px auto 0;padding:0;text-align:center;font-weight:bold;"><span class="text-white text-xbold text-shadow">Sistem Informasi Pembangunan Daerah</span></div>
+                            </div>
+                            <div class="m-t-30 col-md-4 col-sm-4 col-xs-6 setbulet">
+                                <div class="bulet bg-info pull-up" onclick="window.location.replace('pusat?PRIZAQQY9EAvXSSWVmWD6gELa752y83rVQGGpqHEsX@8QEnfqF47qGGe9RZDDwn2xKWy2BXH9b9sr0amd621ZjdbhL6RIls5A774xrKkJ@QVL0r0tc5RggykCD2dEV7D')">
+                                    <div style="margin:10px auto;width:50px;font-size:35px;"><img src="https://sipd.kemendagri.go.id/assets/plugins/images/budget.png"></div>
+                                </div>
+                                <div style="width:100%;margin:10px auto 0;padding:0;text-align:center;font-weight:bold;"><span class="text-white text-xbold text-shadow">Sistem Informasi Keuangan Daerah</span></div>
+                            </div>
+                            <div class="m-t-30 col-md-4 col-sm-4 col-xs-6 setbulet">
+                                <div class="bulet bg-info pull-up" onclick="window.location.replace('pusat?gyn6hvE2df5HgGzoP4/xnIuXlV9Mufy3eQ7nPlMRIxt5N93Op8MyPp4109hpsdZVQvFtO1ve8@mJNg0JKYL2vA9L7RNODqXOf0ZhCz3ttqfHMG6@q8ZAZeq/wIpcfnO4')">
+                                <div style="margin:8px auto;width:50px;font-size:35px;"><img src="https://sipd.kemendagri.go.id/assets/plugins/images/PL.png"></div>
+                                </div>
+                                <div style="width:100%;margin:10px auto 0;padding:0;text-align:center;font-weight:bold;"><span class="text-white text-xbold text-shadow">Sistem Informasi Pemerintahan Daerah Lainnya</span></div>
+                            </div>
+                            <!-- <div class="m-t-30 col-md-3 col-sm-4 col-xs-6 setbulet">
+                                <div class="bulet bg-info pull-up" onclick="alert('under construction');">
+                                    <i class="fa fa-dashboard text-white" style="padding:7px 0 0 10px;"></i>
+                                </div>
+                                <h5 class="text-center text-white text-shadow"><span class="">Monev</span></h5>
+                            </div> -->
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--<div id="container-map"></div>-->
+              
+              
+                            
+                <!-- ============================================================== -->
+                <!-- start right sidebar -->
+                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                <!-- end right sidebar -->
+                <!-- ============================================================== -->
+                <input type="hidden" name="_tawon" value="4a9690ea3c302444888a068082a70856" />
+                <div class="modal animated bounceInUp" id="mod-tampil-daerah" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" style="z-index:1100">
+                    <div class="modal-dialog modal-tampil-daerah" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgpanel-theme">
+                                <button type="button" class="close tutup-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span></button>
+                                <h4 class="modal-title text-white" id="region_name"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="" style="border:1px solid #67757c;margin-bottom:20px;padding-top:10px;padding-bottom:10px;vertical-align: middle;white-space: nowrap;position: relative;border-radius:10px;">
+                                        <span class="icon" style="position:absolute;top:28%;left:20px"><i class="fa fa-search"></i></span>
+                                        <input type="search" id="search" name="filter_daerah" class="dttable-filter" placeholder="Filter Daerah..." style="width: 100%;border: none;font-size: 13pt;padding-left: 45px;color: #898989;" />
+                                    </div>
+                                  </div>
+                                </div> -->
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <input type="hidden" name="region_code" id="region_code" class="form-control" />
+                                    <table class="table table-hover table-striped" id="table_daerah">
+                                        <thead>
+                                          <tr class="bg-grey-600">
+                                            <th class="text-white">Nama Provinsi/Kabupaten/Kota</th>
+                                            <!-- <th>&nbsp;</th> -->
+                                          </tr>
+                                        </thead>
+                                    </table>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-cancel btn-outline" data-dismiss="modal" id="tutup_form">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal animated bounceInUp" id="mod-planning" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" style="z-index:1100">
+                    <div class="modal-dialog modal-planning" role="document">
+                        <form name="form_login_user" class="login-validate" id="loginform">
+                        <div class="modal-content">
+                            <div class="modal-header bgpanel-theme">
+                                <button type="button" class="close tutup-atur-staf" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span></button>
+                                <h4 class="modal-title text-white" id="">SISTEM INFORMASI PEMBANGUNAN DAERAH</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <input type="hidden" name="region_code" id="region_code" class="form-control" />
+                                    <table class="table table-hover table-striped" id="table_daerah">
+                                          <tr class="bg-grey-600">
+                                            <td class="text-white"><a href="javascript:void(0);" onclick="window.location.replace('https://sipd.kemendagri.go.id/run')">Pembangunan Daerah (PMDN 13)</a></td>
+                                          </tr>
+                                          <tr>
+                                                                                        <td class="text-white"><a href="javascript:void(0);" onclick="window.location.replace('pusat/main/plan/portal')">Pembangunan Daerah (PMDN 90)</a></td>
+                                                                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-cancel btn-outline" data-dismiss="modal" id="tutup_form">Tutup</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal animated bounceInUp" id="mod-login" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" style="z-index:1100">
+                    <div class="modal-dialog modal-login-user" role="document">
+                        <form name="form_login_user" class="login-validate" id="loginform">
+                        <div class="modal-content">
+                            <div class="modal-header bgpanel-theme">
+                                <button type="button" class="close tutup-atur-staf" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span></button>
+                                <h4 class="modal-title text-white" id="">FORM LOGIN</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Username </label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                        <input type="text" placeholder="Username" name="user_name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password </label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                        <input type="password" placeholder="Password" name="user_password" id="user_passwd" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="checkbox checkbox-default m-t-0 m-b-0">
+                                            <input id="hide_passwd" type="checkbox" checked>
+                                            <label for="hide_passwd"> Sembunyikan Karakter </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-cancel btn-outline" data-dismiss="modal" id="tutup_form">Tutup</button>
+                                <button type="submit" class="btn btn-primary btn-outline" name="login_user" id="login_user">Masuk</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+                    </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    
+    <!-- <script> console.log("172.24.4.47") </script> -->
+    <script src="https://sipd.kemendagri.go.id/assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/js/jquery.slimscroll.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/js/waves.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/plugins/bower_components/blockUI/jquery.blockUI.js"></script>
+    <script> let remot="pusat",apel="",endog="main",tahu="",umap="",demit="sipd.kemendagri.go.id"; </script>
+    <script src="https://sipd.kemendagri.go.id/assets/js/sanblok.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/js/dakron.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/js/jquery.style2.js"></script>
+    <script type="text/javascript" src="https://sipd.kemendagri.go.id/assets/dist/jquery.vmap.js"></script>
+    <script type="text/javascript" src="https://sipd.kemendagri.go.id/assets/dist/maps/jquery.vmap.indonesia.js" charset="utf-8"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/js/custom.min.js"></script>
+    <script src="https://sipd.kemendagri.go.id/assets/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+</body>
+
+</html>

@@ -33,15 +33,15 @@ echo generateHeader($headerOptions);
 
 ?>
 
-    <!-- <?=checkDefaultPassword(12345, $user[0]['password']);?> -->
+<!-- <?=checkDefaultPassword(12345, $user[0]['password']);?> -->
 <div id="tab-1" class="tab-content  active mt-4">
-        <div class="content pertama">
-            <div class="input-style has-borders has-icon validate-field mt-5">
-                <i class="fa fa-search"></i>
-                <input type="name" class="form-control validate-name" id="form1" placeholder="Cari Informasi Disini">
-                <!-- <label for="form1" class="color-highlight">Name</label> -->
-            </div>
+    <div class="content pertama">
+        <div class="input-style has-borders has-icon validate-field mt-5">
+            <i class="fa fa-search"></i>
+            <input type="name" class="form-control validate-name" id="form1" placeholder="Cari Informasi Disini">
+            <!-- <label for="form1" class="color-highlight">Name</label> -->
         </div>
+    </div>
     <div class="card br-top">
         <div class="content">
             <h4 class="mx-3">Statistik</h4>
@@ -407,6 +407,74 @@ if ($berita) {
             </div>
         </form>
     </div>
+    <div class="calendar bg-theme shadow-xl r">
+    <div class="cal-footer">
+        <h6 class="cal-sub-title uppercase bold bg-highlight color-white">Schedule Box</h6>
+        <span class="cal-message mt-3 mb-3">
+            <i class="fa fa-bell font-18 color-green-dark"></i>
+            <strong class="color-gray-dark">Reminder: Call the plumber for Kitchen Sink</strong>
+            <strong class="color-gray-dark">Reminder: Today is Karla Black's Birthday.</strong>
+        </span>
+        <div class="divider mb-0"></div>
+        <div class="cal-schedule">
+            <em>
+                08:00 PM<br />
+                10:00 AM
+            </em>
+            <strong class="d-block mb-n2">Closing Hours</strong>
+            <span><i class="fa fa-map-marker"></i>Envato Headquarters</span>
+        </div>
+        <div class="cal-schedule">
+            <em>
+                10:00 AM<br />
+                12:00 AM
+            </em>
+            <strong class="d-block mb-n2">Meeting with Board</strong>
+            <span><i class="fa fa-building"></i>Office, Envato Headquarters</span>
+        </div>
+        <div class="cal-schedule">
+            <em>
+                12:00 AM<br />
+                02:00 PM
+            </em>
+            <strong class="d-block mb-n2">Lunch</strong>
+            <span><i class="fa fa-shopping-bag"></i>McDonalds, Town Hall</span>
+        </div>
+        <div class="cal-schedule">
+            <em>
+                02:00 PM<br />
+                05:00 PM
+            </em>
+            <strong class="d-block mb-n2">Quarter Report</strong>
+            <span><i class="fa fa-building"></i>Office, Envato Headquarters</span>
+        </div>
+        <div class="cal-schedule">
+            <em>
+                05:00 PM<br />
+                07:00 PM
+            </em>
+            <strong class="d-block mb-n2">Get Wife from Work</strong>
+            <span><i class="fa fa-car"></i>Wife's Work Headquarters</span>
+        </div>
+        <div class="cal-schedule">
+            <em>
+                07:00 PM<br />
+                09:00 PM
+            </em>
+            <strong class="d-block mb-n2">Watch Movie</strong>
+            <span><i class="fa fa-at"></i>with <u class="color-green-dark">John Doe</u>, <u class="color-orange-dark">Carla Black</u></span>
+        </div>
+        <div class="cal-schedule">
+            <em>
+                09:00 PM<br />
+                10:00 PM
+            </em>
+            <strong class="d-block mb-n2">Call David</strong>
+            <span><i class="fa fa-phone"></i>Call David's Office Number</span>
+        </div>
+    </div>
+</div>
+
     <div class="card card-style bg-theme pb-0">
         <div class="tabs">
 
@@ -484,7 +552,7 @@ if (isset($namaResults)) {
 
     </div>
     <div class="tombol-container">
-    <a href="#" data-menu="menu-event-sample" class="tombol">+</a>
+        <a href="#" data-menu="menu-event-sample" class="tombol">+</a>
 
     </div>
 
@@ -528,12 +596,30 @@ if (isset($namaResults)) {
                     <span>Pengaturan</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
+                <a href="faq.php">
+                    <span>FAQ</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <a href="update-password.php">
+                    <span>Ubah Password</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <a href="#">
+                    <span>Pengaturan</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <a href="#">
+                    <span>FAQ</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 <a href="update-password.php">
                     <span>Ubah Password</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
+            </div>
         </div>
+        
 
     </div>
     <a href="logout.php" class="btn btn-full btn-l mx-2 rounded-sm font-800 text-uppercase bg-highlight">Keluar</a>
@@ -545,13 +631,17 @@ if (isset($namaResults)) {
 <div id="menu-event-sample" class="menu menu-box-bottom" data-menu-height="cover" data-menu-width="cover">
     <div class="card bg-18 rounded-0" data-card-height="350">
         <div class="card-top">
-            <a href="#" class="close-menu float-start btn btn-m rounded-sm font-700 text-uppercase m-3 bg-white color-black">Get Tickets</a>
-            <a href="#" class="float-end close-menu icon icon-s color-black m-3 rounded-circle bg-white"><i class="fa fa-times"></i></a>
+            <a href="#"
+                class="close-menu float-start btn btn-m rounded-sm font-700 text-uppercase m-3 bg-white color-black">Get
+                Tickets</a>
+            <a href="#" class="float-end close-menu icon icon-s color-black m-3 rounded-circle bg-white"><i
+                    class="fa fa-times"></i></a>
         </div>
         <div class="card-bottom m-3">
             <span class="mb-n1 bg-highlight px-2 py-1 rounded-xs font-10 font-700">MOBILE PWA</span>
             <h1 class="color-white font-30">Envato Summer Sale</h1>
-            <p class="color-white opacity-70 pt-3 mb-2 line-height-s">We're the best Mobile Authors on Envato Market. Creating products you love and listening to every feedback you give us.</p>
+            <p class="color-white opacity-70 pt-3 mb-2 line-height-s">We're the best Mobile Authors on Envato Market.
+                Creating products you love and listening to every feedback you give us.</p>
         </div>
         <div class="card-overlay bg-gradient"></div>
     </div>
@@ -570,51 +660,56 @@ if (isset($namaResults)) {
         </div>
         <div class="divider mt-3"></div>
         <h2>About Event</h2>
-    <div class="input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-user"></i>
-        <input type="text" class="form-control validate-text" id="form4" placeholder="Name" />
-        <label for="form4" class="color-highlight">Name</label>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-        <em>(required)</em>
-    </div>
-    <div class="input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-at"></i>
-        <input type="email" class="form-control validate-email" id="form41" placeholder="Email" />
-        <label for="form41" class="color-highlight">Email</label>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-        <em>(required)</em>
-    </div>
-    <div class="input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-phone"></i>
-        <input type="tel" class="form-control validate-tel" id="form42" placeholder="Phone" />
-        <label for="form42" class="color-highlight">Phone</label>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-        <em>(required)</em>
-    </div>
-    <div class="form-check icon-check">
-        <input class="form-check-input" type="checkbox" value id="check2" checked />
-        <label class="form-check-label" for="check2">I accept the Event Terms and Conditions</label>
-        <i class="icon-check-1 fa fa-square color-gray-dark font-16"></i>
-        <i class="icon-check-2 fa fa-check-square font-16 color-blue-dark"></i>
-    </div>
+        <div class="input-style has-borders has-icon validate-field mb-4">
+            <i class="fa fa-user"></i>
+            <input type="text" class="form-control validate-text" id="form4" placeholder="Name" />
+            <label for="form4" class="color-highlight">Name</label>
+            <i class="fa fa-times disabled invalid color-red-dark"></i>
+            <i class="fa fa-check disabled valid color-green-dark"></i>
+            <em>(required)</em>
+        </div>
+        <div class="input-style has-borders has-icon validate-field mb-4">
+            <i class="fa fa-at"></i>
+            <input type="email" class="form-control validate-email" id="form41" placeholder="Email" />
+            <label for="form41" class="color-highlight">Email</label>
+            <i class="fa fa-times disabled invalid color-red-dark"></i>
+            <i class="fa fa-check disabled valid color-green-dark"></i>
+            <em>(required)</em>
+        </div>
+        <div class="input-style has-borders has-icon validate-field mb-4">
+            <i class="fa fa-phone"></i>
+            <input type="tel" class="form-control validate-tel" id="form42" placeholder="Phone" />
+            <label for="form42" class="color-highlight">Phone</label>
+            <i class="fa fa-times disabled invalid color-red-dark"></i>
+            <i class="fa fa-check disabled valid color-green-dark"></i>
+            <em>(required)</em>
+        </div>
+        <div class="form-check icon-check">
+            <input class="form-check-input" type="checkbox" value id="check2" checked />
+            <label class="form-check-label" for="check2">I accept the Event Terms and Conditions</label>
+            <i class="icon-check-1 fa fa-square color-gray-dark font-16"></i>
+            <i class="icon-check-2 fa fa-check-square font-16 color-blue-dark"></i>
+        </div>
 
         <div class="divider mt-4"></div>
-        <a href="#" class="close-menu btn bg-green-dark btn-full btn-xl text-uppercase font-700 rounded-sm mt-4">Get Tickets</a>
+        <a href="#" class="close-menu btn bg-green-dark btn-full btn-xl text-uppercase font-700 rounded-sm mt-4">Get
+            Tickets</a>
     </div>
 </div>
 <div id="menu-modal-event-sample" class="menu menu-box-bottom" data-menu-height="cover" data-menu-width="cover">
     <div class="card bg-18 rounded-0" data-card-height="350">
         <div class="card-top">
-            <a href="#" class="close-menu float-start btn btn-m rounded-sm font-700 text-uppercase m-3 bg-white color-black">Get Tickets</a>
-            <a href="#" class="float-end close-menu icon icon-s color-black m-3 rounded-circle bg-white"><i class="fa fa-times"></i></a>
+            <a href="#"
+                class="close-menu float-start btn btn-m rounded-sm font-700 text-uppercase m-3 bg-white color-black">Get
+                Tickets</a>
+            <a href="#" class="float-end close-menu icon icon-s color-black m-3 rounded-circle bg-white"><i
+                    class="fa fa-times"></i></a>
         </div>
         <div class="card-bottom m-3">
             <span class="mb-n1 bg-highlight px-2 py-1 rounded-xs font-10 font-700">MOBILE PWA</span>
             <h1 class="color-white font-30">Envato Summer Sale</h1>
-            <p class="color-white opacity-70 pt-3 mb-2 line-height-s">We're the best Mobile Authors on Envato Market. Creating products you love and listening to every feedback you give us.</p>
+            <p class="color-white opacity-70 pt-3 mb-2 line-height-s">We're the best Mobile Authors on Envato Market.
+                Creating products you love and listening to every feedback you give us.</p>
         </div>
         <div class="card-overlay bg-gradient"></div>
     </div>
@@ -634,88 +729,93 @@ if (isset($namaResults)) {
         <div class="divider mt-3"></div>
         <h2>About Event</h2>
         <div class="content">
-    <div class="input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-user"></i>
-        <input type="text" class="form-control validate-text" id="form4" placeholder="Name" />
-        <label for="form4" class="color-highlight">Name</label>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-        <em>(required)</em>
-    </div>
-    <div class="input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-at"></i>
-        <input type="email" class="form-control validate-email" id="form41" placeholder="Email" />
-        <label for="form41" class="color-highlight">Email</label>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-        <em>(required)</em>
-    </div>
-    <div class="input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-phone"></i>
-        <input type="tel" class="form-control validate-tel" id="form42" placeholder="Phone" />
-        <label for="form42" class="color-highlight">Phone</label>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-        <em>(required)</em>
-    </div>
-    <div class="form-check icon-check">
-        <input class="form-check-input" type="checkbox" value id="check2" checked />
-        <label class="form-check-label" for="check2">I accept the Event Terms and Conditions</label>
-        <i class="icon-check-1 fa fa-square color-gray-dark font-16"></i>
-        <i class="icon-check-2 fa fa-check-square font-16 color-blue-dark"></i>
-    </div>
-    <a href="#" class="btn btn-m rounded-sm text-uppercase font-700 bg-blue-dark btn-full mt-3">Join Event</a>
-</div>
+            <div class="input-style has-borders has-icon validate-field mb-4">
+                <i class="fa fa-user"></i>
+                <input type="text" class="form-control validate-text" id="form4" placeholder="Name" />
+                <label for="form4" class="color-highlight">Name</label>
+                <i class="fa fa-times disabled invalid color-red-dark"></i>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <em>(required)</em>
+            </div>
+            <div class="input-style has-borders has-icon validate-field mb-4">
+                <i class="fa fa-at"></i>
+                <input type="email" class="form-control validate-email" id="form41" placeholder="Email" />
+                <label for="form41" class="color-highlight">Email</label>
+                <i class="fa fa-times disabled invalid color-red-dark"></i>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <em>(required)</em>
+            </div>
+            <div class="input-style has-borders has-icon validate-field mb-4">
+                <i class="fa fa-phone"></i>
+                <input type="tel" class="form-control validate-tel" id="form42" placeholder="Phone" />
+                <label for="form42" class="color-highlight">Phone</label>
+                <i class="fa fa-times disabled invalid color-red-dark"></i>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <em>(required)</em>
+            </div>
+            <div class="form-check icon-check">
+                <input class="form-check-input" type="checkbox" value id="check2" checked />
+                <label class="form-check-label" for="check2">I accept the Event Terms and Conditions</label>
+                <i class="icon-check-1 fa fa-square color-gray-dark font-16"></i>
+                <i class="icon-check-2 fa fa-check-square font-16 color-blue-dark"></i>
+            </div>
+            <a href="#" class="btn btn-m rounded-sm text-uppercase font-700 bg-blue-dark btn-full mt-3">Join Event</a>
+        </div>
 
         <div class="card card-style mx-0" data-card-height="250">
             <div class="card-top">
-                <a href="#" class="btn bg-white color-black btn-sm rounded-sm text-uppercase font-700 m-2"><i class="fa fa-car color-blue-dark pe-2"></i>Get directions</a>
+                <a href="#" class="btn bg-white color-black btn-sm rounded-sm text-uppercase font-700 m-2"><i
+                        class="fa fa-car color-blue-dark pe-2"></i>Get directions</a>
             </div>
             <div class="card-bottom">
-                        <div class="content">
-                <div class="input-style has-borders has-icon validate-field mb-4">
-                    <i class="fa fa-user"></i>
-                    <input type="text" class="form-control validate-text" id="form4" placeholder="Name" />
-                    <label for="form4" class="color-highlight">Name</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
+                <div class="content">
+                    <div class="input-style has-borders has-icon validate-field mb-4">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control validate-text" id="form4" placeholder="Name" />
+                        <label for="form4" class="color-highlight">Name</label>
+                        <i class="fa fa-times disabled invalid color-red-dark"></i>
+                        <i class="fa fa-check disabled valid color-green-dark"></i>
+                        <em>(required)</em>
+                    </div>
+                    <div class="input-style has-borders has-icon validate-field mb-4">
+                        <i class="fa fa-at"></i>
+                        <input type="email" class="form-control validate-email" id="form41" placeholder="Email" />
+                        <label for="form41" class="color-highlight">Email</label>
+                        <i class="fa fa-times disabled invalid color-red-dark"></i>
+                        <i class="fa fa-check disabled valid color-green-dark"></i>
+                        <em>(required)</em>
+                    </div>
+                    <div class="input-style has-borders has-icon validate-field mb-4">
+                        <i class="fa fa-phone"></i>
+                        <input type="tel" class="form-control validate-tel" id="form42" placeholder="Phone" />
+                        <label for="form42" class="color-highlight">Phone</label>
+                        <i class="fa fa-times disabled invalid color-red-dark"></i>
+                        <i class="fa fa-check disabled valid color-green-dark"></i>
+                        <em>(required)</em>
+                    </div>
+                    <div class="form-check icon-check">
+                        <input class="form-check-input" type="checkbox" value id="check2" checked />
+                        <label class="form-check-label" for="check2">I accept the Event Terms and Conditions</label>
+                        <i class="icon-check-1 fa fa-square color-gray-dark font-16"></i>
+                        <i class="icon-check-2 fa fa-check-square font-16 color-blue-dark"></i>
+                    </div>
+                    <a href="#" class="btn btn-m rounded-sm text-uppercase font-700 bg-blue-dark btn-full mt-3">Join
+                        Event</a>
                 </div>
-                <div class="input-style has-borders has-icon validate-field mb-4">
-                    <i class="fa fa-at"></i>
-                    <input type="email" class="form-control validate-email" id="form41" placeholder="Email" />
-                    <label for="form41" class="color-highlight">Email</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
-                <div class="input-style has-borders has-icon validate-field mb-4">
-                    <i class="fa fa-phone"></i>
-                    <input type="tel" class="form-control validate-tel" id="form42" placeholder="Phone" />
-                    <label for="form42" class="color-highlight">Phone</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
-                <div class="form-check icon-check">
-                    <input class="form-check-input" type="checkbox" value id="check2" checked />
-                    <label class="form-check-label" for="check2">I accept the Event Terms and Conditions</label>
-                    <i class="icon-check-1 fa fa-square color-gray-dark font-16"></i>
-                    <i class="icon-check-2 fa fa-check-square font-16 color-blue-dark"></i>
-                </div>
-                <a href="#" class="btn btn-m rounded-sm text-uppercase font-700 bg-blue-dark btn-full mt-3">Join Event</a>
-            </div>
 
             </div>
             <div class="card-overlay bg-black opacity-60"></div>
             <div class="responsive-iframe">
-                <iframe src="https://www.google.com/maps/embed/v1/view?key=AIzaSyAM3nxDVrkjyKwdIZp8QOplmBKLRVI5S_Y&center=-33.8569,151.2152&zoom=16&maptype=satellite" frameborder="0" allowfullscreen></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyAM3nxDVrkjyKwdIZp8QOplmBKLRVI5S_Y&center=-33.8569,151.2152&zoom=16&maptype=satellite"
+                    frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
         <div class="divider"></div>
         <h2>Event Schedule</h2>
         <p class="line-height-m">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate ac nunc nec accumsan. Nullam ultricies quis lacus a suscipit. Vivamus efficitur eros quis erat euismod consectetur
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate ac nunc nec accumsan. Nullam
+            ultricies quis lacus a suscipit. Vivamus efficitur eros quis erat euismod consectetur
         </p>
         <div class="d-flex">
             <div class="align-self-top">
@@ -750,7 +850,8 @@ if (isset($namaResults)) {
             </div>
         </div>
         <div class="divider mt-4"></div>
-        <a href="#" class="close-menu btn bg-green-dark btn-full btn-xl text-uppercase font-700 rounded-sm mt-4">Get Tickets</a>
+        <a href="#" class="close-menu btn bg-green-dark btn-full btn-xl text-uppercase font-700 rounded-sm mt-4">Get
+            Tickets</a>
     </div>
 </div>
 

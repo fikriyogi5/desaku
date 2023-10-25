@@ -9733,7 +9733,7 @@ code {
 
 .input-style.has-borders input,.input-style.has-borders select,.input-style.has-borders textarea {
     height: 53px;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     /* border-left-width: 1px!important; */
     /* border-right-width: 1px!important; */
     /* border-top-width: 1px!important; */
@@ -10987,9 +10987,9 @@ input[type=number] {
 .calendar {
     position: relative;
     background-color: #fff;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     overflow: hidden;
-    max-width: 90%;
+    /* max-width: 90%; */
     margin: 0 auto 30px
 }
 

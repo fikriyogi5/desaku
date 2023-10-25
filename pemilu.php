@@ -1,31 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="viewport"
-            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-        <link rel="stylesheet" type="text/css" href="bootstrap.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
-        <script type="text/javascript" src="bootstrap.min.js"></script>
-        <script type="text/javascript" src="custom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
-        <title></title>
-    </head>
-    <body class="theme-light" data-highlight="highlight-red" data-gradient="body-default">
-        <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
-        <div id="page">
-            <div class="header header-fixed header-logo-center">
-                <a href="index.html" class="header-title">Sticky Mobile</a>
-                <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-                <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
-            </div>
-            <div class="page-content header-clear-medium">
+<?php
+// session_start();
+
+// include('error_handling.php');
+include 'database.php';
+require_once 'auth.php';
+
+$database = new Database($dbConfig);
+
+// Gantilah 'users' dengan nama tabel pengguna Anda
+$user = $database->read('warga', "id = " . $_SESSION['user_id'] . "");
+
+// if (!$user) {
+//     echo "User not found.";
+//     exit;
+// }
+$mahasiswa = [
+    'gambar' => $user[0]['gambar'], // Ganti dengan nama gambar yang ada atau kosong
+    'jenis_kelamin' => $user[0]['jk'], // Ganti jenis kelamin
+];
+// Halaman home
+// Contoh penggunaan fungsi generateHeader dengan parameter sebagai array
+$headerOptions = [
+    'title' => 'Selamat Datang',
+    'header_menu' => 0, // 1 for Home, 0 for Back
+    'link_back' => 'index.php',
+    'header_title' => 'Pemilu',
+    'footer_menu' => 1, // 1 for Tab Menu, 0 for none
+    'header_style' => 'header-clear-medium',
+];
+
+echo generateHeader($headerOptions);
+
+?>
                 <div class="content">
                     <div class="row mb-n2">
                         <div class="col-12 pe-2">
