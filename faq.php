@@ -9,12 +9,12 @@ if (empty($_GET['id']) || !is_numeric($_GET['id'])) {
     // Jika parameter 'id' kosong atau bukan angka, kembalikan ke halaman sebelumnya
     // header('Location: index.php');
     // exit;
-    $mahasiswa = $database->read('warga', "id=".$_SESSION['user_id']."");    
+    $mahasiswa = $database->read('warga', "nik=".$_SESSION['user_id']."");    
     $hide = '<a href="update-profil.php" class="btn btn-full btn-l rounded-sm font-800 text-uppercase bg-highlight" >Update Profil</a>';
 
 
 } else {
-    $mahasiswa = $database->read('warga', "id=".$_GET['id']."");
+    $mahasiswa = $database->read('warga', "nik=".$_GET['id']."");
     $hide = '';
 }
 
@@ -47,7 +47,7 @@ echo generateHeader($headerOptions);
         </p>
         <?php
         // Menampilkan data mahasiswa
-        $berita = $database->read('faq', '', 3);
+        $berita = $database->read('faq', '', '15');
         if ($berita) {
             foreach ($berita as $news) {
                 echo '<div class="divider mt-3 mb-3"></div>
@@ -67,38 +67,6 @@ echo generateHeader($headerOptions);
         }
         ?>
         
-        <div class="divider mt-3 mb-3"></div>
-        <h5 href="#FAQ2" data-bs-toggle="collapse" role="button" class="font-600 collapsed" aria-expanded="false">
-            Is this a Cordova App?
-            <i class="fa fa-angle-down float-end me-2 mt-1 opacity-50 font-10"></i>
-        </h5>
-        <div class="collapse" id="FAQ2" style="">
-            <p class="pb-3">
-                No, but we have a ready built version in our portfolio and you can convert it to Cordova yourself. It's
-                really simple.
-            </p>
-        </div>
-        <div class="divider mt-3 mb-3"></div>
-        <h5 href="#FAQ3" data-bs-toggle="collapse" role="button" class="font-600 collapsed" aria-expanded="false">
-            Is this a WordPres Theme?
-            <i class="fa fa-angle-down float-end me-2 mt-1 opacity-50 font-10"></i>
-        </h5>
-        <div class="collapse" id="FAQ3" style="">
-            <p class="pb-3">
-                No. Our item is a HTML, CSS3 and JS Site Template. You can however convert it to a WordPress Theme.
-            </p>
-        </div>
-        <div class="divider mt-3 mb-3"></div>
-        <h5 href="#FAQ4" data-bs-toggle="collapse" role="button" class="font-600">
-            Is this built with Boostrap?
-            <i class="fa fa-angle-down float-end me-2 mt-1 opacity-50 font-10"></i>
-        </h5>
-        <div class="collapse" id="FAQ4">
-            <p class="pb-3">
-                Yes! We include 2 versions, one built with Boostrap, and a much more flexible and powerful custom AJAX
-                version.
-            </p>
-        </div>
     </div>
 </div>
 </div>

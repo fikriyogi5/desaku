@@ -9,12 +9,12 @@ if (empty($_GET['id']) || !is_numeric($_GET['id'])) {
     // Jika parameter 'id' kosong atau bukan angka, kembalikan ke halaman sebelumnya
     // header('Location: index.php');
     // exit;
-    $mahasiswa = $database->read('warga', "id=".$_SESSION['user_id']."");    
+    $mahasiswa = $database->read('warga', "nik=".$_SESSION['user_id']."");    
     $hide = '<a href="update-profil.php" class="btn btn-full btn-l rounded-sm font-800 text-uppercase bg-highlight" >Update Profil</a>';
 
 
 } else {
-    $mahasiswa = $database->read('warga', "id=".$_GET['id']."");
+    $mahasiswa = $database->read('warga', "nik=".$_GET['id']."");
     $hide = '';
 }
 

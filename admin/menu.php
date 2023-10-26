@@ -8,7 +8,7 @@
             <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
                 <img src="img/avatars/sunny.png" alt="me" class="online" />
                 <span>
-                    john.doe
+                    Fikri Yogi
                 </span>
                 <i class="fa fa-angle-down"></i>
             </a>
@@ -27,6 +27,10 @@
             <li>
                 <a href="inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span
                         class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">14</span></a>
+            </li>
+            <li>
+                <a href="request_update.php?nik=1401051804910001"><i class="fa fa-lg fa-fw fa-inbox"></i> <span
+                        class="menu-item-parent">Request Update</span><span class="badge pull-right inbox-badge">14</span></a>
             </li>
             <li>
                 <a href="inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Wilayah

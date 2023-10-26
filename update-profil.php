@@ -16,20 +16,24 @@
     // $id = $_GET['id'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $nik = filter_input(INPUT_POST, 'nik', FILTER_SANITIZE_STRING);
         $nama = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);
         $alamat = filter_input(INPUT_POST, 'alamat', FILTER_SANITIZE_STRING);
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $hobi = isset($_POST['hobi']) ? implode(', ', $_POST['hobi']) : ''; // Input hobi dalam bentuk checkbox
         $jenisKelamin = filter_input(INPUT_POST, 'jk', FILTER_SANITIZE_STRING); // Input jenis kelamin dalam bentuk radio
+        $keterangan = filter_input(INPUT_POST, 'keterangan', FILTER_SANITIZE_STRING);
         $tanggalLahir = $_POST['tanggal_lahir']; // Input tanggal lahir
 
     // Mengupdate data di database
     $updateData = array(
+        'nik' => $nik,
         'nama' => $nama,
         'alamat' => $alamat,
         'email' => $email,
         'hobi' => $hobi, // Menyimpan hobi sebagai string yang dipisahkan oleh koma
         'jk' => $jenisKelamin,
+        'keterangan' => $keterangan,
         'tanggal_lahir' => $tanggalLahir
     );
         
@@ -62,14 +66,15 @@
             }
         }
 
-        if ($database->update('warga', $updateData, "id=".$_SESSION['user_id']."")) {
+        // if ($database->update('warga_update', $updateData, "nik=".$_SESSION['user_id']."")) {
+        if ($database->create('warga_update', $updateData)) {
             // If the condition is met, generate JavaScript code to trigger the menu modal
             header("Location:profil.php");
         } else {
             echo 'Gagal mengupdate data.';
         }
     } else {
-        $warga = $database->read('warga', "id=".$_SESSION['user_id']."");
+        $warga = $database->read('warga', "nik=".$_SESSION['user_id']."");
 
         if ($warga) {
             $mhs = $warga[0];
@@ -105,6 +110,7 @@
                 <form method="post" enctype="multipart/form-data">
                     <div class="page-content header-clear-medium">
                         <input type="hidden" name="id" value="<?php echo $mhs['id']; ?>">
+                        <input type="hidden" name="keterangan" value="request">
 
                         <div class="card ">
                             <div class="content mb-0">
@@ -143,19 +149,20 @@
                                     <i class="fa fa-check disabled valid color-green-dark"></i>
                                     <em>(required)</em>
                                 </div>
+                                <div class="input-style has-borders no-icon validate-field mb-4">
+                                    <input type="email" class="form-control validate-text" id="form2" name="email" value="<?php echo $mhs['email']; ?>" placeholder="Email" />
+                                    <label for="form2" class="color-black fw-bold">Email</label>
+                                    <i class="fa fa-times disabled invalid color-red-dark"></i>
+                                    <i class="fa fa-check disabled valid color-green-dark"></i>
+                                    <em>(required)</em>
+                                </div>
                                 <!-- <div class="input-style has-borders no-icon mb-4">
                                     <input type="date" value="2030-12-31" value="<?php echo $mhs['tanggal_lahir']; ?>" max="2030-01-01" min="2021-01-01" class="form-control validate-text" id="form6" placeholder="Phone" />
                                     <label for="form6" class="color-black fw-bold">Tanggal Lahir</label>
                                     <i class="fa fa-check disabled valid me-4 pe-3 font-12 color-green-dark"></i>
                                     <i class="fa fa-check disabled invalid me-4 pe-3 font-12 color-red-dark"></i>
                                 </div>
-                                <div class="input-style has-borders no-icon validate-field mb-4">
-                                    <input type="email" class="form-control validate-text" id="form2" value="<?php echo $mhs['email']; ?>" placeholder="Email" />
-                                    <label for="form2" class="color-black fw-bold">Email</label>
-                                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                                    <em>(required)</em>
-                                </div>
+                                
                                 <div class="input-style has-borders has-icon validate-field mb-4">
                                     
                                     <input type="file" class="form-control validate-name" id="form1" placeholder="Name" />

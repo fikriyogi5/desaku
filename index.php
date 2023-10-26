@@ -8,7 +8,7 @@ require_once 'auth.php';
 $database = new Database($dbConfig);
 
 // Gantilah 'users' dengan nama tabel pengguna Anda
-$user = $database->read('warga', "id = " . $_SESSION['user_id'] . "");
+$user = $database->read('warga', "nik = " . $_SESSION['user_id'] . "");
 
 // if (!$user) {
 //     echo "User not found.";

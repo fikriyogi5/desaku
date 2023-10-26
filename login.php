@@ -5,24 +5,24 @@
 include ('database.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nik = $_POST['nik'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     $database = new Database($dbConfig);
 
     // Gantilah 'users' dengan nama tabel pengguna Anda
-    $user = $database->read('warga', "nik = '$nik'");
+    $user = $database->read('users', "username = '$username'");
 
     if ($user && password_verify($password, $user[0]['password'])) {
         // Login berhasil, set session dan alihkan ke halaman beranda
-        $_SESSION['user_id'] = $user[0]['id'];
+        $_SESSION['user_id'] = $user[0]['username'];
         // header('Location: facebook.php');
         header('Location: index.php');
         exit;
     } else {
         // Login gagal, tampilkan pesan error
         // Login failed, show the snackbar using JavaScript
-        echo 'Login failed. Please check your nik and password';
+        echo 'Login failed. Please check your username and password';
 
     }
 }
@@ -72,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="color-highlight text-start font-14">Untuk masuk, pastikan Anda sudah terdaftar di desa.</p>
                                 <div class="input-style has-borders has-icon validate-field">
                                     <i class="fa fa-user"></i>
-                                    <input type="number" class="form-control validate-name" id="form1a" name="nik" placeholder="NIK/No. Hp" />
-                                    <label for="form1a" class="color-black font-12 mt-n1">NIK/No. Hp</label>
+                                    <input type="number" class="form-control validate-name" id="form1a" name="username" placeholder="username/No. Hp" />
+                                    <label for="form1a" class="color-black font-12 mt-n1">username/No. Hp</label>
                                     <i class="fa fa-times disabled invalid color-red-dark"></i>
                                     <i class="fa fa-check disabled valid color-green-dark"></i>
                                     <!-- <em>(required)</em> -->
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Snackbar -->
             <div id="snackbar-2" class="snackbar-toast rounded-sm bg-red-dark color-white fade hide" data-delay="3500" data-autohide="true">
-                <i class="fa fa-heart me-3"></i>Login failed. Please check your nik and password
+                <i class="fa fa-heart me-3"></i>Login failed. Please check your username and password
             </div>
 
             

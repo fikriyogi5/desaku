@@ -49,6 +49,22 @@ class Database
             return false;
         }
     }
+
+    public function update($table, $data, $condition)
+    {
+        $setClause = implode('=?, ', array_keys($data)) . '=?';
+
+        $query = "UPDATE $table SET $setClause WHERE $condition";
+
+        try {
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(array_values($data));
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
     public function uploadFile($fileInputName, $targetDirectory, $allowedExtensions, $maxFileSize)
     {
         if (isset($_FILES[$fileInputName]) && !empty($_FILES[$fileInputName]['name'])) {
@@ -157,33 +173,22 @@ class Database
     }
 
 
-    public function countData($table, $condition = '')
+    public function countData($table, $condition = '', $groupBy = '')
     {
         $query = "SELECT COUNT(*) as total FROM $table";
-        if ($condition != '') {
+
+        if (!empty($condition)) {
             $query .= " WHERE $condition";
+        }
+
+        if (!empty($groupBy)) {
+            $query .= " GROUP BY $groupBy";
         }
 
         try {
             $stmt = $this->conn->query($query);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result['total'];
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    public function update($table, $data, $condition)
-    {
-        $setClause = implode('=?, ', array_keys($data)) . '=?';
-
-        $query = "UPDATE $table SET $setClause WHERE $condition";
-
-        try {
-            $stmt = $this->conn->prepare($query);
-            $stmt->execute(array_values($data));
-            return true;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return false;
