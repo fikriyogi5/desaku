@@ -108,3 +108,158 @@ $dataRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 </body>
 </html>
+
+
+<?php
+// Sambungkan ke database
+try {
+    $db = new PDO('mysql:host=localhost;dbname=namadatabase', 'username', 'password');
+} catch (PDOException $e) {
+    die("Koneksi database gagal: " . $e->getMessage());
+}
+
+// Periksa apakah pengguna sudah login (sesuaikan sesuai dengan sistem autentikasi Anda)
+// Jika belum login, Anda bisa redirect ke halaman login.
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Ambil status permintaan pembaruan data untuk pengguna yang sudah login
+$userID = $_SESSION['user_id']; // Gantilah ini dengan cara Anda menyimpan ID pengguna pada sesi
+$stmt = $db->prepare("SELECT * FROM data_pending WHERE user_id = :user_id");
+$stmt->bindParam(':user_id', $userID);
+$stmt->execute();
+$dataRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laporan Status Permintaan Pembaruan Data</title>
+</head>
+<body>
+    <h1>Status Permintaan Pembaruan Data</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+        <?php foreach ($dataRequests as $request): ?>
+            <tr>
+                <td><?= $request['id'] ?></td>
+                <td><?= $request['data'] ?></td>
+                <td><?= $request['status'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+
+google search
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-like Mobile Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            background-color: #4285f4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .search-box {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            border: none;
+        }
+
+        .search-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .search-options {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .search-results {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Google-like Mobile Search</h1>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Cari di Google">
+        <button class="search-button">Cari</button>
+    </div>
+
+    <div class="search-options">
+        <div>
+            <input type="radio" name="search-type" value="web" id="web" checked>
+            <label for="web">Web</label>
+        </div>
+        <div>
+            <input type="radio" name="search-type" value="images" id="images">
+            <label for="images">Gambar</label>
+        </div>
+        <div>
+            <input type="radio" name="search-type" value="videos" id="videos">
+            <label for="videos">Video</label>
+        </div>
+    </div>
+
+    <div class="search-results">
+        <!-- Placeholder for search results -->
+    </div>
+
+    <script>
+        // Simpan elemen-elemen HTML yang diperlukan
+        const searchBox = document.querySelector('.search-box');
+        const searchButton = document.querySelector('.search-button');
+        const searchOptions = document.querySelectorAll('input[name="search-type"]');
+        const searchResults = document.querySelector('.search-results');
+
+        // Fungsi untuk menampilkan hasil pencarian (di sini hanya placeholder)
+        function showSearchResults() {
+            searchResults.innerHTML = '<p>Ini adalah hasil pencarian Anda.</p>';
+        }
+
+        // Tambahkan event listener untuk tombol pencarian
+        searchButton.addEventListener('click', showSearchResults);
+
+        // Tambahkan event listener untuk tipe pencarian yang dipilih
+        searchOptions.forEach(option => {
+            option.addEventListener('change', showSearchResults);
+        });
+    </script>
+</body>
+</html>
