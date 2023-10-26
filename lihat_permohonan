@@ -1,0 +1,110 @@
+
+<?php
+// Sambungkan ke database
+try {
+    $db = new PDO('mysql:host=localhost;dbname=namadatabase', 'username', 'password');
+} catch (PDOException $e) {
+    die("Koneksi database gagal: " . $e->getMessage());
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $newData = $_POST['new_data'];
+
+    // Masukkan data baru ke tabel "data_pending"
+    $stmt = $db->prepare("INSERT INTO data_pending (data) VALUES (:data)");
+    $stmt->bindParam(':data', $newData);
+    $stmt->execute();
+
+    // Beri pesan bahwa permintaan telah dikirim
+    echo "Permintaan pembaruan data telah dikirim dan menunggu persetujuan admin.";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Permintaan Pembaruan Data</title>
+</head>
+<body>
+    <form method="post">
+        <textarea name="new_data"></textarea>
+        <input type="submit" value="Kirim Permintaan Pembaruan">
+    </form>
+</body>
+</html>
+<?php
+// Sambungkan ke database
+try {
+    $db = new PDO('mysql:host=localhost;dbname=namadatabase', 'username', 'password');
+} catch (PDOException $e) {
+    die("Koneksi database gagal: " . $e->getMessage());
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $status = $_POST['status'];
+
+    if ($status === 'approved') {
+        // Ambil data dari "data_pending"
+        $stmt = $db->prepare("SELECT data FROM data_pending WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $data = $stmt->fetchColumn();
+
+        // Masukkan data ke tabel "data_approved"
+        $stmt = $db->prepare("INSERT INTO data_approved (data) VALUES (:data)");
+        $stmt->bindParam(':data', $data);
+        $stmt->execute();
+
+        // Hapus data dari "data_pending"
+        $stmt = $db->prepare("DELETE FROM data_pending WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    } else {
+        // Jika ditolak, cukup hapus dari "data_pending"
+        $stmt = $db->prepare("DELETE FROM data_pending WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+
+    // Beri pesan bahwa status telah diperbarui
+    echo "Status permintaan dengan ID $id telah diperbarui menjadi $status.";
+}
+
+// Ambil semua permintaan yang masih dalam status "pending" dari "data_pending"
+$stmt = $db->query("SELECT * FROM data_pending");
+$dataRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Halaman Admin</title>
+</head>
+<body>
+    <h1>Permintaan Pembaruan Data</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach ($dataRequests as $request): ?>
+            <tr>
+                <td><?= $request['id'] ?></td>
+                <td><?= $request['data'] ?></td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="id" value="<?= $request['id'] ?>">
+                        <select name="status">
+                            <option value="approved">Disetujui</option>
+                            <option value="rejected">Ditolak</option>
+                        </select>
+                        <input type="submit" value="Simpan">
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
