@@ -36,6 +36,7 @@ $keterangan = "request"; // Gantilah ini dengan nilai yang sesuai
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nik = $_POST['nik'];
     $nama = $_POST['nama'];
+    $tanggal_lahir = $_POST['tanggal_lahir'];
     $status = $_POST['status'];
 
     if ($status === 'approved') {
@@ -49,8 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // $stmt = $db->prepare("INSERT INTO warga (data) VALUES (:data)");
         // $stmt->bindParam(':data', $data);
         // $stmt->execute();
-        $stmt = $db->prepare("UPDATE warga SET nama = :nama WHERE nik = :nik");
+        $stmt = $db->prepare("UPDATE warga SET nama = :nama, tanggal_lahir = :tanggal_lahir WHERE nik = :nik");
         $stmt->bindParam(':nama', $nama);
+        $stmt->bindParam(':tanggal_lahir', $tanggal_lahir);
         $stmt->bindParam(':nik', $nik);
         $stmt->execute();
 
@@ -136,6 +138,7 @@ $dataRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <form method="post">
                         <input type="hidden" name="nik" value="<?= $request['nik'] ?>">
                         <input type="hidden" name="nama" value="<?= $request['nama'] ?>">
+                        <input type="hidden" name="tanggal_lahir" value="<?= $request['tanggal_lahir'] ?>">
                         <select name="status">
                             <option value="">Status</option>
                             <option value="approved">Disetujui</option>

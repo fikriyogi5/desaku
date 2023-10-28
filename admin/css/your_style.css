@@ -5078,7 +5078,7 @@ ul.clsradio input[type="radio"]:checked + label {
 .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
     border: 0px solid #f4f4f4;
     padding-left: 0;
-    /*padding-right: 0;*/
+    /* padding-right: 0; */
 }
 
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
@@ -11473,6 +11473,16 @@ td.dt-body-right {
     display: -webkit-box;
     display: -moz-box;
 }
+.navlistscroll {
+  white-space: nowrap; /* [1] */
+  overflow-x: auto; /* [2] */
+  -webkit-overflow-scrolling: touch; /* [3] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
+  }
+
+/* [5] */
+.navlistscroll::-webkit-scrollbar {
+  display: none; }
 
 /*.table-responsive { overflow-x: visible }
 @media screen and (max-width: 767px) { 

@@ -4805,7 +4805,7 @@ textarea.form-control-lg {
 }
 
 .fixed-top {
-    position: fixed;
+    position: fixed!important;
     top: 0;
     right: 0;
     left: 0;
@@ -5562,7 +5562,7 @@ textarea.form-control-lg {
 }
 
 .mt-5 {
-    margin-top: 3rem!important;
+    margin-top: 2.8rem!important;
 }
 
 .mt-6 {
@@ -6620,7 +6620,7 @@ body {
     border: none;
     -webkit-appearance: none;
     appearance: none;
-    background-color: transparent!important
+    background-color: transparent!important;
 }
 
 .header .dropdown-menu {
@@ -9733,8 +9733,8 @@ code {
 
 .input-style.has-borders input,.input-style.has-borders select,.input-style.has-borders textarea {
     height: 53px;
-    border: 1px solid #fff;
-    /* border-left-width: 1px!important; */
+    border: 1px solid #6236ff;
+    border-left-width: 1px!important;
     /* border-right-width: 1px!important; */
     /* border-top-width: 1px!important; */
     padding-left: 13px!important;
@@ -11666,7 +11666,7 @@ input[type=number] {
     color: #fff
 }
 
-.theme-dark .accordion-btn,.theme-dark .accordion-style-2 a,.theme-dark .color-theme,.theme-dark .contact-form i,.theme-dark .countdown div,.theme-dark .demo-icon-font article,.theme-dark .fac label,.theme-dark .footer .footer-title,.theme-dark .header .header-icon,.theme-dark .header .header-title,.theme-dark .list-group i:last-child,.theme-dark .menu .nav .active-nav i,.theme-dark .menu .nav .active-nav span,.theme-dark .menu .nav a i,.theme-dark .menu .nav a span,.theme-dark .menu .nav-title,.theme-dark .pagination a,.theme-dark .profile-2 .profile-stats a,.theme-dark .search-header .fa-search,.theme-dark .search-header input,.theme-dark .search-icon-list a,.theme-dark .vcard-field *,.theme-dark [data-tab],.theme-dark input,.theme-dark span:not(.badge) {
+.theme-dark .accordion-btn,.theme-dark .accordion-style-2 a,.theme-dark .color-theme,.theme-dark .contact-form i,.theme-dark .countdown div,.theme-dark .demo-icon-font article,.theme-dark .fac label,.theme-dark .footer .footer-title,.theme-dark .header .header-icon,.theme-dark .header .header-title,.theme-dark .list-group i:last-child,.theme-dark .menu .nav .active-nav i,.theme-dark .menu .nav .active-nav span,.theme-dark .menu .nav a i,.theme-dark .menu .nav a span,.theme-dark .menu .nav-title,.theme-dark .pagination a,.theme-dark .profile-2 .profile-stats a,.theme-dark .search-header .fa-search,.theme-dark .search-header input,.theme-dark .search-icon-list a,.theme-dark .vcard-field *,.theme-dark [data-tab],.theme-dark input,.theme-dark span:not(.sbadge) {
     color: #fff!important
 }
 
@@ -11687,7 +11687,7 @@ input[type=number] {
     background-color: #0f1117!important
 }
 
-.theme-dark #preloader,.theme-dark .card,.theme-dark .footer,.theme-dark .form-floating-over>.form-control:focus~label,.theme-dark .form-floating-over>.form-control:not(:placeholder-shown)~label,.theme-dark .form-floating-over>.form-select~label {
+.theme-dark #preloader,.theme-dark .card,.theme-dark .footer,.theme-dark .form-floating-over>.form-control:focus~label,.theme-dark .form-floating-over>.form-control:not(:placeholder-shown)~label,.theme-dark .form-floating-over>.form-select~label, .pertama:before {
     background-color: #0f1117
 }
 
@@ -11736,7 +11736,7 @@ input[type=number] {
     border-right: 1px solid rgba(255,255,255,.05)!important
 }
 
-.theme-dark #footer-bar,.theme-dark .header,.theme-dark .menu,.theme-dark .menu .form-border-bottom label,.theme-dark .menu .form-floating-style label,.theme-dark .menu .form-style label,.theme-dark .polaroid-effect,.theme-dark .tab-controls,.theme-dark .timeline-item-content,.theme-dark .timeline-item-content-full,.theme-dark th {
+.theme-dark #footer-bar,.theme-dark .header,.theme-dark .menu,.theme-dark .menu .form-border-bottom label,.theme-dark .menu .form-floating-style label,.theme-dark .menu .form-style label,.theme-dark .polaroid-effect,.theme-dark .tab-controls,.theme-dark .timeline-item-content,.theme-dark .timeline-item-content-full,.theme-dark th, {
     background-color: #21252a!important;
     color: #fff
 }
@@ -11808,11 +11808,11 @@ input[type=number] {
 }
 
 .color-highlight {
-    color: #da4453!important
+    color: #6236ff!important;
 }
 
 .border-highlight {
-    border-color: #da4453!important
+    border-color: #6236ff!important;
 }
 
 .gradient-highlight {
@@ -12823,7 +12823,7 @@ input[type=number] {
 }
 
 .theme-light input:not([type=submit]):not(.focus-color):focus,.theme-light select:focus,.theme-light textarea:active {
-    border-color: rgb(213 16 16 / 87%)!important;
+    border-color: rgb(255 255 255 / 87%)!important;
 }
 
 .theme-light [data-card-height=cover] input:not([type=submit]):not(.focus-color):focus,.theme-light [data-card-height=cover] select:focus,.theme-light [data-card-height=cover] textarea:active {
@@ -12961,7 +12961,7 @@ input[type=number] {
 }
 
 .bg-highlight {
-    background-color: #da4453;
+    background-color: #6236FF;
     color: #fff!important
 }
 
@@ -13489,7 +13489,7 @@ input[type=number] {
     top: 0;
     content: "";
     display: block;
-    height: 190px;
+    height: 145px;
     background: #6236FF;
 }
 .tab-content.active {

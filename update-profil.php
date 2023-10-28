@@ -25,6 +25,9 @@
         $keterangan = filter_input(INPUT_POST, 'keterangan', FILTER_SANITIZE_STRING);
         $tanggalLahir = $_POST['tanggal_lahir']; // Input tanggal lahir
 
+        // Ubah format tanggal dari "d/m/Y" ke "Y-m-d"
+        $new_date = date("Y-m-d", strtotime($tanggalLahir));
+
     // Mengupdate data di database
     $updateData = array(
         'nik' => $nik,
@@ -34,7 +37,7 @@
         'hobi' => $hobi, // Menyimpan hobi sebagai string yang dipisahkan oleh koma
         'jk' => $jenisKelamin,
         'keterangan' => $keterangan,
-        'tanggal_lahir' => $tanggalLahir
+        'tanggal_lahir' => $new_date
     );
         
         if (isset($_FILES['gambar']) && !empty($_FILES['gambar']['name'])) {
@@ -75,6 +78,7 @@
         }
     } else {
         $warga = $database->read('warga', "nik=".$_SESSION['user_id']."");
+        // $warga = $database->read('warga_update', "nik=".$_SESSION['user_id']."" AND "keterangan=request ");
 
         if ($warga) {
             $mhs = $warga[0];
@@ -283,16 +287,16 @@
 
                         
                     </div>
-                    <div id="menu-modal-call" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="250" style="display: block; height: 250px;">
+                    <div id="menu-modal-call" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="170" style="display: block; height: 170px;">
                         <div class="menu-title mt-n1">
-                        <h1>Call Now</h1>
-                        <p class="color-highlight">Tap to Start a Call Now</p>
+                        <h1>Konfirmasi!</h1>
+                        <!-- <p class="color-highlight">Tap to Start a Call Now</p> -->
                         <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
                         </div>
-                        <div class="content mb-0 mt-2">
+                        <div class="content mb-0 mt-n3">
                         <div class="divider mb-3"></div>
                         <p>
-                        We're always here to help. Give us a Call Today. Just tap the button and get in touch with us.
+                        Anda yakin ingin menyimpan?
                         </p>
                         <input type="submit" class=" btn btn-l  rounded-sm btn-full bg-green-dark text-uppercase font-800 btn-icon" value="Simpan">
                     </div>

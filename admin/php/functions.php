@@ -243,20 +243,35 @@ public function countResidents($category = null, $value = null)
     }
 
 
-    public function getDataByKategori($id) {
-            try {
-                $conn = $this->db->getConnection();
-                $stmt = $conn->prepare("SELECT * FROM warga WHERE kk = :id");
-                $stmt->bindParam(':id', $id);
-                $stmt->execute();
+    public function getDataByKategoris($table, $category, $id) {
+        try {
+            $conn = $this->db->getConnection();
+            $stmt = $conn->prepare("SELECT * FROM $table WHERE $category = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
 
-                // Menggunakan fetchAll untuk mengambil semua hasil yang cocok
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-                return [];
-            }
+            // Menggunakan fetchAll untuk mengambil semua hasil yang cocok
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
         }
+    }
+    public function getDataByKategori($table, $category, $id) {
+        try {
+            $conn = $this->db->getConnection();
+            $stmt = $conn->prepare("SELECT * FROM $table WHERE $category = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+    
+            // Menggunakan fetch untuk mengambil satu baris data
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return null; // Mengembalikan null jika terjadi kesalahan
+        }
+    }
+    
 
     public function deleteData($id)
     {

@@ -417,7 +417,7 @@ if ($berita) {
     </div>
     <div class="calendar bg-theme shadow-xl r">
         <div class="cal-footer">
-            <h6 class="cal-sub-title uppercase bold bg-highlight color-white">Schedule Box</h6>
+            <h6 class="cal-sub-title uppercase fixed-top mt-5 bold bg-highlight color-white">Schedule Box</h6>
             <span class="cal-message mt-3 mb-3">
                 <i class="fa fa-bell font-18 color-green-dark"></i>
                 <strong class="color-gray-dark">Reminder: Call the plumber for Kitchen Sink</strong>
@@ -514,35 +514,7 @@ if ($berita) {
                 <div class="indicator"></div>
             </div>
             <div class="content">
-                <?php
-include "class/class.search.php";
-if (isset($_POST['submit'])) {
-    $searchQuery = $_POST['search'];
-    $searchEngine = new SearchEngine();
-    $namaResults = $searchEngine->searchNama($searchQuery);
-    $nikResults = $searchEngine->searchNik($searchQuery);
-    $emailResults = $searchEngine->searchEmail($searchQuery);
-}
-if (isset($namaResults)) {
-    foreach ($namaResults as $result) {
-        echo "<section>
-                      <h2>Nama</h2>
-                      " . $result['nama'] . "<br>
-                    </section>";
-    }
-
-    foreach ($nikResults as $result) {
-        echo "NIK: " . $result['nik'] . "<br>";
-    }
-
-    foreach ($emailResults as $result) {
-        echo "Email: " . $result['email'] . "<br>";
-    }
-
-    // Close the database connection
-    $searchEngine->close();
-}
-?>
+                
                 <section>
                     <h2>Nama</h2>
                 </section>
@@ -626,30 +598,32 @@ if (isset($namaResults)) {
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
+        </div>
+    </div>
+            
+    <div class="card">
+        <div class="content">
             <div class="list-group list-custom-small list-icon-0">
                 <a href="#">
-                    <i class="fab font-14 fa-facebook-f rounded-s color-facebook"></i>
+                    <!-- <i class="fab font-14 fa-facebook-f rounded-s color-facebook"></i> -->
                     <span>Tipe Akun</span>
-                    <span class="badge  bg-white">Warga</span>
+                    <span class="badge  ">Warga</span>
                     <i class="fa fa-chevron-right disabled"></i>
                 </a>
                 <a href="#">
-                    <i class="fab font-14 fa-twitter rounded-s color-twitter"></i>
                     <span>Email</span>
-                    <span class="badge  bg-white">fikriyogi@gmail.com</span>
-                    <i class="fa fa-angle-right"></i>
+                    <span class="badge  "><?php echo ($user[0]['email'] == "") ? "-" : $user[0]['email']; ?></span>
+                    <i class="fa fa-angle-right disabled"></i>
                 </a>
                 <a href="#">
-                    <i class="fab font-14 fa-instagram rounded-s color-instagram"></i>
                     <span>Pertanyaan Keamanan</span>
-                    <span class="badge  bg-white">Sudah Diatur</span>
-                    <i class="fa fa-chevron-right "></i>
+                    <span class="badge  ">Sudah Diatur</span>
+                    <i class="fa fa-chevron-right  disabled"></i>
                 </a>
                 <a class="border-0" href="#">
-                    <i class="fab font-14 fa-linkedin-in rounded-s color-linkedin"></i>
                     <span>LinkedIn</span>
-                    <span class="badge  bg-yellow-dark">PENDING APPROVAL</span>
-                    <i class="fa fa-chevron-right disabled"></i>
+                    <!-- <span class="badge  bg-yellow-dark">PENDING APPROVAL</span> -->
+                    <i class="fa fa-angle-right"></i>
                 </a>
             </div>
 

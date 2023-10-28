@@ -7,11 +7,35 @@ include ('database.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    
+    // Assuming you have received the data from the client in a POST request
+    $deviceType = $_POST['device_type'];
+    $os = $_POST['operating_system'];
+    $deviceDetails = $_POST['device_details'];
+    $imei = $_POST['imei'];
+    $networkInfo = $_POST['network_info'];
+    $userLocation = $_POST['user_location'];
+
+    // Insert this information into a database table for user/device information
+    $dataToInsert = array(
+        'user_id' => $user_id, // Associating the data with a user
+        'device_type' => $deviceType,
+        'operating_system' => $os,
+        'device_details' => $deviceDetails,
+        'imei' => $imei,
+        'network_info' => $networkInfo,
+        'user_location' => $userLocation,
+        'capture_time' => date('Y-m-d H:i:s')
+    );
+
+
 
     $database = new Database($dbConfig);
 
     // Gantilah 'users' dengan nama tabel pengguna Anda
     $user = $database->read('users', "username = '$username'");
+    $analytic = $database->create('user_device_info', $dataToInsert);
+
 
     if ($user && password_verify($password, $user[0]['password'])) {
         // Login berhasil, set session dan alihkan ke halaman beranda
@@ -69,19 +93,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <form method="post" action="">
                             <div class="ps-3 pe-3">
                                 <h1 class="text-start font-800 font-40 mb-2">Selamat Datang!</h1>
-                                <p class="color-highlight text-start font-14">Untuk masuk, pastikan Anda sudah terdaftar di desa.</p>
-                                <div class="input-style has-borders has-icon validate-field">
+                                <p class="color-highlight text-start font-15">Untuk masuk, pastikan Anda sudah terdaftar di desa.</p>
+                                <div class="input-style has-borders has-icon validate-field mt-5">
                                     <i class="fa fa-user"></i>
                                     <input type="number" class="form-control validate-name" id="form1a" name="username" placeholder="username/No. Hp" />
-                                    <label for="form1a" class="color-black font-12 mt-n1">username/No. Hp</label>
+                                    <label for="form1a" class="color-black font-15 mt-n1">username/No. Hp</label>
                                     <i class="fa fa-times disabled invalid color-red-dark"></i>
                                     <i class="fa fa-check disabled valid color-green-dark"></i>
                                     <!-- <em>(required)</em> -->
                                 </div>
-                                <div class="input-style has-borders has-icon validate-field mt-4">
+                                <div class="input-style has-borders has-icon validate-field mt-5">
                                     <i class="fa fa-lock"></i>
                                     <input type="password" class="form-control validate-password" id="form3a" name="password" placeholder="Password" />
-                                    <label for="form3a" class="color-black font-12 mt-n1">Password</label>
+                                    <label for="form3a" class="color-black font-15 mt-n1">Password</label>
                                     <i class="fa fa-times disabled invalid color-red-dark"></i>
                                     <i class="fa fa-check disabled valid color-green-dark"></i>
                                     <!-- <em>(required)</em> -->
@@ -89,8 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
 
                                 <div class="d-flex mt-4 mb-4">
-                                    <div class="w-50 font-14 pb-2 text-start"><a href="page-signup-2.html">Create Account</a></div>
-                                    <div class="w-50 font-14 pb-2 text-end"><a href="page-forgot-2.html">Forgot Credentials</a></div>
+                                    <div class="w-50 font-15 pb-2 text-start"><a href="page-signup-2.html">Create Account</a></div>
+                                    <div class="w-50 font-15 pb-2 text-end"><a href="page-forgot-2.html">Forgot Credentials</a></div>
                                 </div>
                                 <div class="divider mt-4"></div>
                                 <button class="back-button btn btn-full btn-m shadow-large rounded-sm text-uppercase font-700 bg-highlight" type="submit">LOGIN</button>
@@ -104,44 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div id="menu-settings" class="menu menu-box-bottom menu-box-detached">
-                <div class="menu-title mt-0 pt-0">
-                    <h1>Settings</h1>
-                    <p class="color-highlight">Flexible and Easy to Use</p>
-                    <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
-                </div>
-                <div class="divider divider-margins mb-n2"></div>
-                <div class="content">
-                    <div class="list-group list-custom-small">
-                        <a href="#" data-toggle-theme data-trigger-switch="switch-dark-mode" class="pb-2 ms-n1">
-                            <i class="fa font-12 fa-moon rounded-s bg-highlight color-white me-3"></i>
-                            <span>Dark Mode</span>
-                            <div class="custom-control scale-switch ios-switch">
-                                <input data-toggle-theme type="checkbox" class="ios-input" id="switch-dark-mode" />
-                                <label class="custom-control-label" for="switch-dark-mode"></label>
-                            </div>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-                    <div class="list-group list-custom-large">
-                        <a data-menu="menu-highlights" href="#">
-                            <i class="fa font-14 fa-tint bg-green-dark rounded-s"></i>
-                            <span>Page Highlight</span>
-                            <strong>16 Colors Highlights Included</strong>
-                            <span class="badge bg-highlight color-white">HOT</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        <a data-menu="menu-backgrounds" href="#" class="border-0">
-                            <i class="fa font-14 fa-cog bg-blue-dark rounded-s"></i>
-                            <span>Background Color</span>
-                            <strong>10 Page Gradients Included</strong>
-                            <span class="badge bg-highlight color-white">NEW</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Snackbar -->
             <div id="snackbar-2" class="snackbar-toast rounded-sm bg-red-dark color-white fade hide" data-delay="3500" data-autohide="true">
                 <i class="fa fa-heart me-3"></i>Login failed. Please check your username and password
@@ -149,99 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             
 
-
-            <div id="menu-highlights" class="menu menu-box-bottom menu-box-detached">
-                <div class="menu-title">
-                    <h1>Highlights</h1>
-                    <p class="color-highlight">Any Element can have a Highlight Color</p>
-                    <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
-                </div>
-                <div class="divider divider-margins mb-n2"></div>
-                <div class="content">
-                    <div class="highlight-changer">
-                        <a href="#" data-change-highlight="blue"><i class="fa fa-circle color-blue-dark"></i><span class="color-blue-light">Default</span></a>
-                        <a href="#" data-change-highlight="red"><i class="fa fa-circle color-red-dark"></i><span class="color-red-light">Red</span></a>
-                        <a href="#" data-change-highlight="orange"><i class="fa fa-circle color-orange-dark"></i><span class="color-orange-light">Orange</span></a>
-                        <a href="#" data-change-highlight="pink2"><i class="fa fa-circle color-pink2-dark"></i><span class="color-pink-dark">Pink</span></a>
-                        <a href="#" data-change-highlight="magenta"><i class="fa fa-circle color-magenta-dark"></i><span class="color-magenta-light">Purple</span></a>
-                        <a href="#" data-change-highlight="aqua"><i class="fa fa-circle color-aqua-dark"></i><span class="color-aqua-light">Aqua</span></a>
-                        <a href="#" data-change-highlight="teal"><i class="fa fa-circle color-teal-dark"></i><span class="color-teal-light">Teal</span></a>
-                        <a href="#" data-change-highlight="mint"><i class="fa fa-circle color-mint-dark"></i><span class="color-mint-light">Mint</span></a>
-                        <a href="#" data-change-highlight="green"><i class="fa fa-circle color-green-light"></i><span class="color-green-light">Green</span></a>
-                        <a href="#" data-change-highlight="grass"><i class="fa fa-circle color-green-dark"></i><span class="color-green-dark">Grass</span></a>
-                        <a href="#" data-change-highlight="sunny"><i class="fa fa-circle color-yellow-light"></i><span class="color-yellow-light">Sunny</span></a>
-                        <a href="#" data-change-highlight="yellow"><i class="fa fa-circle color-yellow-dark"></i><span class="color-yellow-light">Goldish</span></a>
-                        <a href="#" data-change-highlight="brown"><i class="fa fa-circle color-brown-dark"></i><span class="color-brown-light">Wood</span></a>
-                        <a href="#" data-change-highlight="night"><i class="fa fa-circle color-dark-dark"></i><span class="color-dark-light">Night</span></a>
-                        <a href="#" data-change-highlight="dark"><i class="fa fa-circle color-dark-light"></i><span class="color-dark-light">Dark</span></a>
-                        <div class="clearfix"></div>
-                    </div>
-                    <a href="#" data-menu="menu-settings" class="mb-3 btn btn-full btn-m rounded-sm bg-highlight shadow-xl text-uppercase font-900 mt-4">Back to Settings</a>
-                </div>
-            </div>
-
-            <div id="menu-backgrounds" class="menu menu-box-bottom menu-box-detached">
-                <div class="menu-title">
-                    <h1>Backgrounds</h1>
-                    <p class="color-highlight">Change Page Color Behind Content Boxes</p>
-                    <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
-                </div>
-                <div class="divider divider-margins mb-n2"></div>
-                <div class="content">
-                    <div class="background-changer">
-                        <a href="#" data-change-background="default"><i class="bg-theme"></i><span class="color-dark-dark">Default</span></a>
-                        <a href="#" data-change-background="plum"><i class="body-plum"></i><span class="color-plum-dark">Plum</span></a>
-                        <a href="#" data-change-background="magenta"><i class="body-magenta"></i><span class="color-dark-dark">Magenta</span></a>
-                        <a href="#" data-change-background="dark"><i class="body-dark"></i><span class="color-dark-dark">Dark</span></a>
-                        <a href="#" data-change-background="violet"><i class="body-violet"></i><span class="color-violet-dark">Violet</span></a>
-                        <a href="#" data-change-background="red"><i class="body-red"></i><span class="color-red-dark">Red</span></a>
-                        <a href="#" data-change-background="green"><i class="body-green"></i><span class="color-green-dark">Green</span></a>
-                        <a href="#" data-change-background="sky"><i class="body-sky"></i><span class="color-sky-dark">Sky</span></a>
-                        <a href="#" data-change-background="orange"><i class="body-orange"></i><span class="color-orange-dark">Orange</span></a>
-                        <a href="#" data-change-background="yellow"><i class="body-yellow"></i><span class="color-yellow-dark">Yellow</span></a>
-                        <div class="clearfix"></div>
-                    </div>
-                    <a href="#" data-menu="menu-settings" class="mb-3 btn btn-full btn-m rounded-sm bg-highlight shadow-xl text-uppercase font-900 mt-4">Back to Settings</a>
-                </div>
-            </div>
-
-            <div id="menu-share" class="menu menu-box-bottom menu-box-detached">
-                <div class="menu-title mt-n1">
-                    <h1>Share the Love</h1>
-                    <p class="color-highlight">Just Tap the Social Icon. We'll add the Link</p>
-                    <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
-                </div>
-                <div class="content mb-0">
-                    <div class="divider mb-0"></div>
-                    <div class="list-group list-custom-small list-icon-0">
-                        <a href="auto_generated" class="shareToFacebook external-link">
-                            <i class="font-18 fab fa-facebook-square color-facebook"></i>
-                            <span class="font-13">Facebook</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        <a href="auto_generated" class="shareToTwitter external-link">
-                            <i class="font-18 fab fa-twitter-square color-twitter"></i>
-                            <span class="font-13">Twitter</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        <a href="auto_generated" class="shareToLinkedIn external-link">
-                            <i class="font-18 fab fa-linkedin color-linkedin"></i>
-                            <span class="font-13">LinkedIn</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        <a href="auto_generated" class="shareToWhatsApp external-link">
-                            <i class="font-18 fab fa-whatsapp-square color-whatsapp"></i>
-                            <span class="font-13">WhatsApp</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        <a href="auto_generated" class="shareToMail external-link border-0">
-                            <i class="font-18 fa fa-envelope-square color-mail"></i>
-                            <span class="font-13">Email</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
         
     <script type="text/javascript" src="bootstrap.min.js"></script>
@@ -266,6 +159,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var passwordInput = document.getElementById("form3a");
             passwordInput.type = "password";
         });
+    </script>
+    <script>
+        // Function to get device type
+        function getDeviceType() {
+            if (/Android/i.test(navigator.userAgent)) {
+                return "Mobile (Android)";
+            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                return "Mobile (iOS)";
+            } else {
+                return "Desktop";
+            }
+        }
+
+        // Function to get operating system
+        function getOperatingSystem() {
+            const userAgent = navigator.userAgent;
+            if (/Android/i.test(userAgent)) {
+                return "Android OS";
+            } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                return "iOS";
+            } else if (/Windows/i.test(userAgent)) {
+                return "Windows";
+            } else if (/Mac OS X/i.test(userAgent)) {
+                return "macOS";
+            } else if (/Linux/i.test(userAgent)) {
+                return "Linux";
+            } else {
+                return "Other";
+            }
+        }
+
+        // Function to get device details
+        function getDeviceDetails() {
+            return `${window.screen.width}x${window.screen.height}, Color Depth: ${window.screen.colorDepth}`;
+        }
+
+        // Function to get network information
+        function getNetworkInformation() {
+            return `IP Address: ${getIPAddress()}, Connection Type: ${getConnectionType()}`;
+        }
+
+        // Function to get user's IP address (may require a server-side call)
+        function getIPAddress() {
+            // You might need to make a server-side request to get the user's IP address
+            // Example: Fetch user's IP address from your server
+            return "123.45.67.89";
+        }
+
+        // Function to get connection type (e.g., 4G, Wi-Fi, etc.)
+        function getConnectionType() {
+            // You can use the Network Information API if available, but support may be limited
+            if (navigator.connection) {
+                return navigator.connection.type;
+            } else {
+                return "Unknown";
+            }
+        }
+
+        // Function to get user's geolocation (requires user consent)
+        function getUserLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        console.log(`Latitude: ${latitude}, Longitude: ${longitude}, Accuracy: ${accuracy} meters`);
+                    },
+                    function (error) {
+                        console.error("Error getting geolocation: " + error.message);
+                    }
+                );
+            } else {
+                console.error("Geolocation not supported by the browser");
+            }
+        }
+
+        // Usage
+        const deviceType = getDeviceType();
+        const os = getOperatingSystem();
+        const deviceDetails = getDeviceDetails();
+        const networkInfo = getNetworkInformation();
+        getUserLocation(); // Capture user's geolocation (requires user consent)
     </script>
     </body>
 </html>

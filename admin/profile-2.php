@@ -45,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = $function->getDataById("id", $id);
+    $nik = $data['nik'];
+    $kk = $data['kk'];
     if ($data) {
 include "header.php";
  include 'menu.php'; ?>
@@ -93,7 +95,8 @@ include "header.php";
                                         <li><a href="#treatment_history" data-toggle="tab" aria-expanded="true"><i class="fas fa-diagnoses"></i> Laporan Masuk</a></li>
                                         <li><a href="#timeline" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Kasus Individu</a></li>
                                         <li><a href="#prints" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Cetak Surat</a></li>
-                                        <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Sekolah</a></li>
+                                        <li><a href="#r_sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Sekolah</a></li>
+                                        <li><a href="#r_permohonan" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Riwayat Permohonan</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Riwayat Pengobatan</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Kontak</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Bank</a></li>
@@ -350,6 +353,55 @@ include "header.php";
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" id="r_permohonan">
+                                            <div class="box-tab-header">
+                                                <h3 class="box-tab-title">Riwayat Permohonan Perubahan Data</h3>
+                                                <div class="box-tab-tools">
+                                                    <a href="#"  onclick="getRevisitRecord('4757')" class="btn btn-primary btn-sm revisitpatient"  data-toggle="modal" title=""><i class="fas fa-exchange-alt"></i> New Visit                                            </a>
+                                                </div>
+                                            </div>
+                                            <div class="download_label">Zak Crawkly (380) OPD Details</div>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover ajaxlistvisit" cellspacing="0" width="100%" data-export-title="Zak Crawkly (380) OPD Details">
+                                                    <thead>
+                                                        <th>OPD No</th>
+                                                        <th>Case ID</th>
+                                                        <th>Appointment Date</th>
+                                                        <th>Consultant</th>
+                                                        <th>Reference</th>
+                                                        <th>Symptoms</th>
+                                                        <th>Previous Medical Issue</th>
+                                                        <th class="text-right noExport">Action</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    	<?php 
+                                                        // Tampilkan data dalam bentuk tabel
+                                                        $data = $function->getDataByKategoris('warga_update', 'nik', $data['nik']);
+
+                                                        if (!empty($data)) {
+                                                            foreach ($data as $row) {
+                                                                echo '<tr>
+                                                                <td>' . $row['id'] . '</td>
+                                                                <td>' . $row['nama'] . '</td>
+                                                                <td>' . $row['nik'] . '</td>
+                                                                <td>' . $row['tempat_lahir'] . '</td>
+                                                                <td>' . $row['tanggal_lahir'] . '</td>
+                                                                <td>' . $row['jk'] . '</td>
+                                                                <td>' . $row['alamat'] . '</td>
+                                                                <td class="text-right noExport">' . $row['pendidikan'] . '</td>
+                                                                </tr>';
+                                                            }
+                                                        } else {
+                                                            echo '<tr>
+                                                            <td colspan="7" class="text-center">Tidak ada data yang cocok.</td>
+                                                            </tr>';
+                                                        }
+                                                        ?>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                         <!-- -->
                                         <div class="tab-pane" id="labinvestigation">
                                             <div class="box-tab-header">
@@ -370,30 +422,78 @@ include "header.php";
                                                         <th class="text-right noExport">Action</th>
                                                     </thead>
                                                     <tbody id="">
-                                                    	<?php echo $function->displayFamilyMembersWidget($data['kk']);?>
+                                                        <?php 
+                                                        // Tampilkan data dalam bentuk tabel
+                                                        $data = $function->getDataByKategoris('warga', 'kk', $kk);
+
+                                                        if (!empty($data)) {
+                                                            foreach ($data as $row) {
+                                                                echo '<tr>
+                                                                <td>' . $row['id'] . '</td>
+                                                                <td>' . $row['nama'] . '</td>
+                                                                <td>' . $row['nik'] . '</td>
+                                                                <td>' . $row['tempat_lahir'] . '</td>
+                                                                <td>' . $row['tanggal_lahir'] . '</td>
+                                                                <td>' . $row['jk'] . '</td>
+                                                                <td>' . $row['alamat'] . '</td>
+                                                                <td class="text-right noExport">' . $row['pendidikan'] . '</td>
+                                                                </tr>';
+                                                            }
+                                                        } else {
+                                                            echo '<tr>
+                                                            <td colspan="7" class="text-center">Tidak ada data yang cocok.</td>
+                                                            </tr>';
+                                                        }
+                                                        ?>
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <!-- -->
-                                        <div class="tab-pane" id="treatment_history">
-                                            <div class="box-tab-header">
-                                                <h3 class="box-tab-title">Treatment History</h3>
-                                            </div>
-                                            <div class="impbtnview-t9">
+                                        <div class="tab-pane" id="r_sekolah">
+                                        <div class="box-tab-header">
+                                                <h3 class="box-tab-title">Riwayat Sekolah</h3>
+                                                <div class="box-tab-tools">
+                                                    <a href="#"  onclick="getRevisitRecord('4757')" class="btn btn-primary btn-sm revisitpatient"  data-toggle="modal" title=""><i class="fas fa-exchange-alt"></i> New Visit                                            </a>
+                                                </div>
                                             </div>
                                             <div class="download_label">Zak Crawkly (380) OPD Details</div>
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover treatmentlist"  data-export-title="Zak Crawkly (380) OPD Details">
+                                                <table class="table table-striped table-bordered table-hover ajaxlistvisit" cellspacing="0" width="100%" data-export-title="Zak Crawkly (380) OPD Details">
                                                     <thead>
                                                         <th>OPD No</th>
                                                         <th>Case ID</th>
                                                         <th>Appointment Date</th>
-                                                        <th>Symptoms</th>
                                                         <th>Consultant</th>
+                                                        <th>Reference</th>
+                                                        <th>Symptoms</th>
                                                         <th class="text-right noExport">Action</th>
                                                     </thead>
                                                     <tbody>
+                                                    <?php 
+                                                        // Tampilkan data dalam bentuk tabel
+                                                        $data = $function->getDataByKategoris('riwayat_sekolah', 'nik', $nik);
+
+                                                        if (!empty($data)) {
+                                                            foreach ($data as $row) {
+                                                                echo '<tr>
+                                                                <td>' . $row['id'] . '</td>
+                                                                <td>' . $row['nama_sekolah'] . '</td>
+                                                                <td>' . $row['jenis'] . '</td>
+                                                                <td>' . $row['alamat'] . '</td>
+                                                                <td>' . $row['tahun_masuk'] . '</td>
+                                                                <td>' . $row['tahun_keluar'] . '</td>
+                                                                <td>' . $row['nilai_terakhir'] . '</td>
+                                                                </tr>';
+                                                            }
+                                                        } else {
+                                                            echo '<tr>
+                                                            <td colspan="7" class="text-center">Tidak ada data yang cocok.</td>
+                                                            </tr>';
+                                                        }
+                                                        ?>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>

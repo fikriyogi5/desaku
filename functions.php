@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("Asia/Jakarta");
+
 function maskMiddleDigits($string) {
     // Check if the provided string is not empty
         if (!empty($string)) {
@@ -97,15 +99,16 @@ function generateHeader($headerOptions) {
             <a href="' . $link_back . '" data-menu="menu-sidebar-left-4" class="header-icon header-icon-1">
                 <i class="fas ' . $icon . ' font-18"></i>
             </a>
-            <a href="#" data-toggle-theme="" class="header-icon header-icon-4">
-                <i class="fas fa-lightbulb font-18"></i>
-            </a>
+            <a href="#" data-toggle-theme="" class="header-icon header-icon-4"><i class="fas fa-lightbulb font-18"></i></a>
+            <a href="search_homepage.php" class="header-icon header-icon-3"><i class="fas fa-search"></i></a>
+
         </div>';
     } else {
         $html .= '<div class="header header-fixed header-logo-center">
         <a href="index.php" class="header-title">' . $header_title . '</a>
         <a href="' . $link_back . '" class="header-icon header-icon-1"><i class="fas ' . $icon . '"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
+        <a href="search_homepage.php" class="header-icon header-icon-3"><i class="fas fa-search"></i></a>
     </div>';
     }
     

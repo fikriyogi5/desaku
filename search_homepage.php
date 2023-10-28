@@ -25,12 +25,54 @@ echo generateHeader($headerOptions);
 ?>
 
     <div class="content pertama">
+    <!-- <form action="" method="post">
+            <div class="input-style has-borders has-icon validate-field mb-2">
+                <i class="fa fa-search"></i>
+                <input type="text" name="search" class="form-control validate-name" id="cariInput"
+                    placeholder="Masukkan kata kunci">
+                <input type="submit" name="submit" value="Cari">
+            </div>
+        </form> -->
 
     <div class="input-style has-borders has-icon validate-field mt-5">
+    <form action="" method="post">
             <i class="fa fa-search"></i>
-            <input type="name" class="form-control validate-name" id="form1" placeholder="Cari Informasi Disini">
-            <!-- <label for="form1" class="color-highlight">Name</label> -->
+            <input type="text"  name="search" class="form-control validate-name" id="cariInput" placeholder="Cari Informasi Disini">
+            <input type="submit" name="submit" value="Cari" style="display: none;">
+
+</form>
         </div>
+    </div>
+    <div class"card">
+    <?php
+include "class/class.search.php";
+if (isset($_POST['submit'])) {
+    $searchQuery = $_POST['search'];
+    $searchEngine = new SearchEngine();
+    $namaResults = $searchEngine->searchNama($searchQuery);
+    $nikResults = $searchEngine->searchNik($searchQuery);
+    $emailResults = $searchEngine->searchEmail($searchQuery);
+}
+if (isset($namaResults)) {
+    foreach ($namaResults as $result) {
+        echo "<section>
+                      <h2>Nama</h2>
+                      " . $result['nama'] . "<br>
+                    </section>";
+    }
+
+    foreach ($nikResults as $result) {
+        echo "NIK: " . $result['nik'] . "<br>";
+    }
+
+    foreach ($emailResults as $result) {
+        echo "Email: " . $result['email'] . "<br>";
+    }
+
+    // Close the database connection
+    $searchEngine->close();
+}
+?>
     </div>
 
 

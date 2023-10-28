@@ -2,8 +2,6 @@
 require_once 'config.php';
 
 $table = $_GET['table'];
-$kategori = @$_GET['kategori'];
-$label = @$_GET['label'];
 
 if (!array_key_exists($table, $tables)) {
     die("Table not found.");
@@ -22,13 +20,7 @@ try {
 }
 
 // Start building the SQL query
-if (empty($kategori) || empty($label)) {
-    // Jika salah satu atau keduanya kosong, ambil semua data
-    $sql = "SELECT " . implode(", ", $columns) . " FROM $table";
-} else {
-    // Jika keduanya terisi, gunakan klausa WHERE
-    $sql = "SELECT " . implode(", ", $columns) . " FROM $table WHERE $kategori = :label";
-}
+$sql = "SELECT " . implode(", ", $columns) . " FROM $table";
 
 // Implement WHERE conditions, searching, etc., if needed
 if (!empty($_POST['search']['value'])) {
@@ -37,20 +29,14 @@ if (!empty($_POST['search']['value'])) {
     foreach ($columns as $column) {
         $searchConditions[] = "$column LIKE '%$search%'";
     }
-    $sql .= " AND (" . implode(" OR ", $searchConditions) . ")";
+    $sql .= " WHERE " . implode(" OR ", $searchConditions);
 }
 
-// Execute the SQL query with parameter binding
+// Execute the SQL query
 $query = $conn->prepare($sql);
-
-if (!empty($kategori) && !empty($label)) {
-    $query->bindValue(':label', $label);
-}
-
 $query->execute();
-
-// Count total data (before applying LIMIT)
 $totalData = $query->rowCount();
+$totalFiltered = $totalData;
 
 // Add sorting and paging to the query
 if (!empty($_POST['order'])) {
@@ -63,13 +49,7 @@ $start = $_POST['start'];
 $length = $_POST['length'];
 $sql .= " LIMIT $start, $length";
 
-// Execute the SQL query again after applying sorting and paging
 $query = $conn->prepare($sql);
-
-if (!empty($kategori) && !empty($label)) {
-    $query->bindValue(':label', $label);
-}
-
 $query->execute();
 
 // Fetch data and format as JSON
@@ -100,7 +80,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 $json_data = array(
     "draw"            => intval($_POST['draw']),
     "recordsTotal"    => intval($totalData),
-    "recordsFiltered" => intval($totalData), // Jumlah data yang difilter sekarang adalah total data setelah filter
+    "recordsFiltered" => intval($totalFiltered),
     "data"            => $data
 );
 

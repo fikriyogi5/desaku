@@ -13856,7 +13856,7 @@ img.away {
     border: 1px solid #bfbfbf;
     color: #6D6A69;
     font-size: 17px;
-    margin: 10px 0 0
+    margin: 10px 0 0;
 }
 
 .btn-header>:first-child>a:hover {
@@ -15754,7 +15754,7 @@ html.hidden-menu-mobile-lock {
 }
 
 .no-padding .dataTables_wrapper table tr td:first-child,.no-padding .dataTables_wrapper table tr th:first-child,.no-padding>table tr td:first-child,.no-padding>table tr th:first-child {
-    border-left: none!important
+    border-left: none!important;
 }
 
 .no-padding .dataTables_wrapper table tbody tr:last-child td {

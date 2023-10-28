@@ -84,8 +84,7 @@
                 <a href="#"><i class="fa fa-lg fa-fw fa-windows"></i> <span class="menu-item-parent">Penduduk</span></a>
                 <ul>
                     <li>
-                        <a href="http://bootstraphunter.com/smartadmin-landing/" target="_blank">Identitas Desa <i
-                                class="fa fa-external-link"></i></a>
+                        <a href="penduduk.php" >Penduduk Desa </a>
                     </li>
                     <li>
                         <a href="pricing-table.html">Wilayah Administratif</a>
@@ -96,8 +95,7 @@
                 <a href="#"><i class="fa fa-lg fa-fw fa-windows"></i> <span class="menu-item-parent">BPD</span></a>
                 <ul>
                     <li>
-                        <a href="http://bootstraphunter.com/smartadmin-landing/" target="_blank">Identitas Desa <i
-                                class="fa fa-external-link"></i></a>
+                        <a href="http://bootstraphunter.com/smartadmin-landing/" >Identitas Desa</a>
                     </li>
                     <li>
                         <a href="pricing-table.html">Wilayah Administratif</a>
