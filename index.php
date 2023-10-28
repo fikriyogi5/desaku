@@ -24,6 +24,7 @@ $headerOptions = [
     'title' => 'Selamat Datang',
     'header_menu' => 1, // 1 for Home, 0 for Back
     'link_back' => '#',
+    'icon' => 'fa-indent',
     'header_title' => 'Welcome',
     'footer_menu' => 1, // 1 for Tab Menu, 0 for none
     'header_style' => 'header-clear-small',
@@ -33,9 +34,16 @@ echo generateHeader($headerOptions);
 
 ?>
 
-<!-- <?=checkDefaultPassword(12345, $user[0]['password']);?> -->
 <div id="tab-1" class="tab-content  active mt-4">
     <div class="content pertama">
+        <?php
+// $check = checkDefaultPassword(12345, $user[0]['password']);
+// if (!$check == true) {
+//     header("location:update-password.php");
+//     exit;
+// } 
+;?>
+
         <div class="input-style has-borders has-icon validate-field mt-5">
             <i class="fa fa-search"></i>
             <input type="name" class="form-control validate-name" id="form1" placeholder="Cari Informasi Disini">
@@ -408,72 +416,73 @@ if ($berita) {
         </form>
     </div>
     <div class="calendar bg-theme shadow-xl r">
-    <div class="cal-footer">
-        <h6 class="cal-sub-title uppercase bold bg-highlight color-white">Schedule Box</h6>
-        <span class="cal-message mt-3 mb-3">
-            <i class="fa fa-bell font-18 color-green-dark"></i>
-            <strong class="color-gray-dark">Reminder: Call the plumber for Kitchen Sink</strong>
-            <strong class="color-gray-dark">Reminder: Today is Karla Black's Birthday.</strong>
-        </span>
-        <div class="divider mb-0"></div>
-        <div class="cal-schedule">
-            <em>
-                08:00 PM<br />
-                10:00 AM
-            </em>
-            <strong class="d-block mb-n2">Closing Hours</strong>
-            <span><i class="fa fa-map-marker"></i>Envato Headquarters</span>
-        </div>
-        <div class="cal-schedule">
-            <em>
-                10:00 AM<br />
-                12:00 AM
-            </em>
-            <strong class="d-block mb-n2">Meeting with Board</strong>
-            <span><i class="fa fa-building"></i>Office, Envato Headquarters</span>
-        </div>
-        <div class="cal-schedule">
-            <em>
-                12:00 AM<br />
-                02:00 PM
-            </em>
-            <strong class="d-block mb-n2">Lunch</strong>
-            <span><i class="fa fa-shopping-bag"></i>McDonalds, Town Hall</span>
-        </div>
-        <div class="cal-schedule">
-            <em>
-                02:00 PM<br />
-                05:00 PM
-            </em>
-            <strong class="d-block mb-n2">Quarter Report</strong>
-            <span><i class="fa fa-building"></i>Office, Envato Headquarters</span>
-        </div>
-        <div class="cal-schedule">
-            <em>
-                05:00 PM<br />
-                07:00 PM
-            </em>
-            <strong class="d-block mb-n2">Get Wife from Work</strong>
-            <span><i class="fa fa-car"></i>Wife's Work Headquarters</span>
-        </div>
-        <div class="cal-schedule">
-            <em>
-                07:00 PM<br />
-                09:00 PM
-            </em>
-            <strong class="d-block mb-n2">Watch Movie</strong>
-            <span><i class="fa fa-at"></i>with <u class="color-green-dark">John Doe</u>, <u class="color-orange-dark">Carla Black</u></span>
-        </div>
-        <div class="cal-schedule">
-            <em>
-                09:00 PM<br />
-                10:00 PM
-            </em>
-            <strong class="d-block mb-n2">Call David</strong>
-            <span><i class="fa fa-phone"></i>Call David's Office Number</span>
+        <div class="cal-footer">
+            <h6 class="cal-sub-title uppercase bold bg-highlight color-white">Schedule Box</h6>
+            <span class="cal-message mt-3 mb-3">
+                <i class="fa fa-bell font-18 color-green-dark"></i>
+                <strong class="color-gray-dark">Reminder: Call the plumber for Kitchen Sink</strong>
+                <strong class="color-gray-dark">Reminder: Today is Karla Black's Birthday.</strong>
+            </span>
+            <div class="divider mb-0"></div>
+            <div class="cal-schedule">
+                <em>
+                    08:00 PM<br />
+                    10:00 AM
+                </em>
+                <strong class="d-block mb-n2">Closing Hours</strong>
+                <span><i class="fa fa-map-marker"></i>Envato Headquarters</span>
+            </div>
+            <div class="cal-schedule">
+                <em>
+                    10:00 AM<br />
+                    12:00 AM
+                </em>
+                <strong class="d-block mb-n2">Meeting with Board</strong>
+                <span><i class="fa fa-building"></i>Office, Envato Headquarters</span>
+            </div>
+            <div class="cal-schedule">
+                <em>
+                    12:00 AM<br />
+                    02:00 PM
+                </em>
+                <strong class="d-block mb-n2">Lunch</strong>
+                <span><i class="fa fa-shopping-bag"></i>McDonalds, Town Hall</span>
+            </div>
+            <div class="cal-schedule">
+                <em>
+                    02:00 PM<br />
+                    05:00 PM
+                </em>
+                <strong class="d-block mb-n2">Quarter Report</strong>
+                <span><i class="fa fa-building"></i>Office, Envato Headquarters</span>
+            </div>
+            <div class="cal-schedule">
+                <em>
+                    05:00 PM<br />
+                    07:00 PM
+                </em>
+                <strong class="d-block mb-n2">Get Wife from Work</strong>
+                <span><i class="fa fa-car"></i>Wife's Work Headquarters</span>
+            </div>
+            <div class="cal-schedule">
+                <em>
+                    07:00 PM<br />
+                    09:00 PM
+                </em>
+                <strong class="d-block mb-n2">Watch Movie</strong>
+                <span><i class="fa fa-at"></i>with <u class="color-green-dark">John Doe</u>, <u
+                        class="color-orange-dark">Carla Black</u></span>
+            </div>
+            <div class="cal-schedule">
+                <em>
+                    09:00 PM<br />
+                    10:00 PM
+                </em>
+                <strong class="d-block mb-n2">Call David</strong>
+                <span><i class="fa fa-phone"></i>Call David's Office Number</span>
+            </div>
         </div>
     </div>
-</div>
 
     <div class="card card-style bg-theme pb-0">
         <div class="tabs">
@@ -605,24 +614,51 @@ if (isset($namaResults)) {
                     <i class="fa fa-angle-right"></i>
                 </a>
                 <a href="#">
-                    <span>Pengaturan</span>
+                    <span>Ketentuan Kebijakan</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
                 <a href="#">
-                    <span>FAQ</span>
+                    <span>Kebijakan Privasi</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
                 <a href="update-password.php">
-                    <span>Ubah Password</span>
+                    <span>Pusat Bantuan</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
+            <div class="list-group list-custom-small list-icon-0">
+                <a href="#">
+                    <i class="fab font-14 fa-facebook-f rounded-s color-facebook"></i>
+                    <span>Tipe Akun</span>
+                    <span class="badge  bg-white">Warga</span>
+                    <i class="fa fa-chevron-right disabled"></i>
+                </a>
+                <a href="#">
+                    <i class="fab font-14 fa-twitter rounded-s color-twitter"></i>
+                    <span>Email</span>
+                    <span class="badge  bg-white">fikriyogi@gmail.com</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <a href="#">
+                    <i class="fab font-14 fa-instagram rounded-s color-instagram"></i>
+                    <span>Pertanyaan Keamanan</span>
+                    <span class="badge  bg-white">Sudah Diatur</span>
+                    <i class="fa fa-chevron-right "></i>
+                </a>
+                <a class="border-0" href="#">
+                    <i class="fab font-14 fa-linkedin-in rounded-s color-linkedin"></i>
+                    <span>LinkedIn</span>
+                    <span class="badge  bg-yellow-dark">PENDING APPROVAL</span>
+                    <i class="fa fa-chevron-right disabled"></i>
+                </a>
             </div>
-        </div>
-        
 
+        </div>
     </div>
+
     <a href="logout.php" class="btn btn-full btn-l mx-2 rounded-sm font-800 text-uppercase bg-highlight">Keluar</a>
+
+</div>
 
 
 </div>

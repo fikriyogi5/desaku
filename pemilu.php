@@ -14,16 +14,14 @@ $user = $database->read('warga', "id = " . $_SESSION['user_id'] . "");
 //     echo "User not found.";
 //     exit;
 // }
-$mahasiswa = [
-    'gambar' => $user[0]['gambar'], // Ganti dengan nama gambar yang ada atau kosong
-    'jenis_kelamin' => $user[0]['jk'], // Ganti jenis kelamin
-];
+
 // Halaman home
 // Contoh penggunaan fungsi generateHeader dengan parameter sebagai array
 $headerOptions = [
     'title' => 'Selamat Datang',
     'header_menu' => 0, // 1 for Home, 0 for Back
     'link_back' => 'index.php',
+    'icon' => 'fa-arrow-left',
     'header_title' => 'Pemilu',
     'footer_menu' => 1, // 1 for Tab Menu, 0 for none
     'header_style' => 'header-clear-medium',

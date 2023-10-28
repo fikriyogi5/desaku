@@ -7,5 +7,5 @@
     session_destroy();
 
     // Alihkan ke halaman login
-    header('Location: login.php'); // Ganti 'login.php' dengan halaman login Anda
+    header('Location: search_homepage.php'); // Ganti 'login.php' dengan halaman login Anda
     exit;

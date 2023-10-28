@@ -66,6 +66,7 @@ function generateHeader($headerOptions) {
     $header_menu = $headerOptions['header_menu'];
     $header_title = $headerOptions['header_title'];
     $link_back = $headerOptions['link_back'];
+    $icon = $headerOptions['icon'];
     $footer_menu = $headerOptions['footer_menu'];
     $header_style = $headerOptions['header_style'];
 
@@ -94,7 +95,7 @@ function generateHeader($headerOptions) {
         $html .= '<div class="header header-fixed header-logo-center" style="transform: translateX(0px);">
             <a href="index.php" class="header-title">' . $header_title . '</a>
             <a href="' . $link_back . '" data-menu="menu-sidebar-left-4" class="header-icon header-icon-1">
-                <i class="fas fa-indent font-18"></i>
+                <i class="fas ' . $icon . ' font-18"></i>
             </a>
             <a href="#" data-toggle-theme="" class="header-icon header-icon-4">
                 <i class="fas fa-lightbulb font-18"></i>
@@ -103,7 +104,7 @@ function generateHeader($headerOptions) {
     } else {
         $html .= '<div class="header header-fixed header-logo-center">
         <a href="index.php" class="header-title">' . $header_title . '</a>
-        <a href="' . $link_back . '" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+        <a href="' . $link_back . '" class="header-icon header-icon-1"><i class="fas ' . $icon . '"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
     </div>';
     }

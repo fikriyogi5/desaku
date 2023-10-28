@@ -12,7 +12,7 @@ require_once 'auth.php';
 $database = new Database($dbConfig);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $warga = $database->read('warga', "id=".$_SESSION['user_id']."");
+    $warga = $database->read('warga', "nik=".$_SESSION['user_id']."");
 
     if ($warga) {
         $mhs = $warga[0];
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'password' => password_hash($passwordBaru, PASSWORD_DEFAULT)
                 );
 
-                if ($database->update('warga', $updateData, "id=".$_SESSION['user_id']."")) {
+                if ($database->update('warga', $updateData, "nik=".$_SESSION['user_id']."")) {
                     header("Location: update-password.php");
                     $_SESSION['notification'] = '<div class="card card-style bg-red-dark mt-5 mx-2 me-2">
     <div class="content">
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo 'Data tidak ditemukan.';
     }
 } else {
-    $warga = $database->read('warga', "id=".$_SESSION['user_id']."");
+    $warga = $database->read('warga', "nik=".$_SESSION['user_id']."");
 
     if ($warga) {
         $mhs = $warga[0];

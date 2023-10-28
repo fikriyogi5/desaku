@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card-top notch-clear">
                         <div class="d-flex">
                             <!-- <a href="#" data-back-button class="me-auto icon icon-m"><i class="font-14 fa fa-arrow-left color-theme"></i></a> -->
-                            <a href="#" data-toggle-theme class="show-on-theme-light ms-auto icon icon-m"><i class="font-12 fa fa-moon color-theme"></i></a>
-                            <a href="#" data-toggle-theme class="show-on-theme-dark ms-auto icon icon-m"><i class="font-12 fa fa-lightbulb color-yellow-dark"></i></a>
+                            <a href="#" data-toggle-theme class="show-on-theme-light ms-auto icon icon-m"><i class="font-14 fa fa-moon color-theme"></i></a>
+                            <a href="#" data-toggle-theme class="show-on-theme-dark ms-auto icon icon-m"><i class="font-14 fa fa-lightbulb color-yellow-dark"></i></a>
                         </div>
                     </div>
                     <div class="card-center">

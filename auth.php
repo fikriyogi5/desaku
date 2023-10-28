@@ -1,5 +1,5 @@
 <?php
 if (!isset($_SESSION['user_id'])) {
-header('Location: login.php');
+header('Location: search_homepage.php');
 exit;
 }

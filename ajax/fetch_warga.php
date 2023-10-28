@@ -17,7 +17,7 @@ $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo '<div class="list-group list-custom-small warga-item" id="listGroup">
-    <a href="#" data-menu="menu-author-details" data-profile-name="' . $row['nama'] .'" data-gambar="' . $row['gambar'] .'" data-profile-umur="' . getUmurWarga($row['tanggal_lahir']) .'" data-profile-id="' . $row['id'] .'" class="show-profile">
+    <a href="#" data-menu="menu-author-details" data-profile-name="' . $row['nama'] .'" data-gambar="' . $row['gambar'] .'" data-profile-umur="' . getUmurWarga($row['tanggal_lahir']) .'" data-profile-id="' . $row['nik'] .'" class="show-profile">
         <span>'. $row['nama'] .'</span>
         <i class="fa fa-angle-right"></i>
     </a>'; 

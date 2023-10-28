@@ -3,9 +3,28 @@
 require_once 'database.php';
 require_once 'auth.php';
     // Periksa apakah pengguna telah login, jika tidak, alihkan ke halaman login
-
-$database = new Database($dbConfig);
-if (empty($_GET['id']) || !is_numeric($_GET['id'])) {
+    // $id = $_GET['id'];
+    $database = new Database($dbConfig);
+    
+    // // Periksa apakah pengguna sudah login
+    // if (isset($_SESSION['user_id'])) {
+    //     $nik = $_SESSION['user_id'];
+    
+    //     // Cek apakah nik dari session sesuai dengan nilai yang diterima dari parameter 'id'
+    //     if ($nik = $_SESSION['user_id']) {
+    //         $hide = '<a href="update-profil.php" class="btn btn-full btn-l rounded-sm font-800 text-uppercase bg-highlight">Update Profil</a>';
+    //     } else {
+    //         // Jika nik tidak cocok dengan 'id', cari data warga dengan 'id'
+    //         $mahasiswa = $database->read('warga', "nik=$id");
+    //         $hide = '';
+    //     }
+    // } else {
+    //     // Tindakan yang sesuai jika pengguna belum login
+    //     // Anda dapat mengarahkannya ke halaman login atau tindakan lain
+    //     $hide = '';
+    // }
+    
+if (empty($_GET['id']) ) {
     // Jika parameter 'id' kosong atau bukan angka, kembalikan ke halaman sebelumnya
     // header('Location: index.php');
     // exit;
@@ -29,6 +48,7 @@ $headerOptions = [
     'title' => 'Profil',
     'header_menu' => 0,
     'link_back' => 'index.php',
+    'icon' => 'fa-arrow-left',
     'header_title' => 'Profil Warga',
     'footer_menu' => 0,
     'header_style' => 'header-clear-medium',
