@@ -29,6 +29,7 @@ $headerOptions = [
     'title' => 'Profil',
     'header_menu' => 0,
     'link_back' => 'index.php',
+    'icon' => 'fa-arrow-left',
     'header_title' => 'FAQ',
     'footer_menu' => 0,
     'header_style' => 'header-clear-medium',

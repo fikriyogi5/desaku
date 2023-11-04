@@ -41,9 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
 // Ambil data berdasarkan ID yang akan diedit
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    // $id = $_GET['id'];
+    $id = decrypt($_GET['id'], $key);
     $data = $function->getDataById("id", $id);
     $nik = $data['nik'];
     $kk = $data['kk'];
@@ -98,7 +100,7 @@ include "header.php";
                                         <li><a href="#r_sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Sekolah</a></li>
                                         <li><a href="#r_permohonan" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Riwayat Permohonan</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Riwayat Pengobatan</a></li>
-                                        <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Kontak</a></li>
+                                        <li><a href="#kontak" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Kontak</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Bank</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Riwayat Nilai</a></li>
                                         <li><a href="#sekolah" data-toggle="tab" aria-expanded="true"><i class="far fa-calendar-check"></i> Riwayat Iuran</a></li>
@@ -120,16 +122,16 @@ include "header.php";
                                                         <div class="col-lg-9 col-md-8 col-sm-12">
                                                             <table class="table table-bordered mb0">
                                                                 <tr>
-                                                                    <td class="bolds">Gender</td>
+                                                                    <td class="bolds">Jenis Kelamin</td>
                                                                     <td><?= $function->getGenderDescription($data['jk'])?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="bolds">Age</td>
+                                                                    <td class="bolds">Umur</td>
                                                                     <td><?= $function->calculateAgeFromDateOfBirth($data['tanggal_lahir']);?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="bolds">Guardian Name</td>
-                                                                    <td></td>
+                                                                    <td class="bolds">Nama Panggilan</td>
+                                                                    <td><?= $data['alias'];?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="bolds">Phone</td>
@@ -430,7 +432,7 @@ include "header.php";
                                                             foreach ($data as $row) {
                                                                 echo '<tr>
                                                                 <td>' . $row['id'] . '</td>
-                                                                <td>' . $row['nama'] . '</td>
+                                                                <td><a href="profile-2.php?id=' . $encrypted = encrypt($row['id'], $key) .'">' . $row['nama'] . '</a></td>
                                                                 <td>' . $row['nik'] . '</td>
                                                                 <td>' . $row['tempat_lahir'] . '</td>
                                                                 <td>' . $row['tanggal_lahir'] . '</td>
@@ -514,20 +516,104 @@ include "header.php";
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" id="prescription">
+                                        <div class="tab-pane" id="kontak">
+                                        <div class="box-tab-header">
+                                                <h3 class="box-tab-title">Riwayat Permohonan Perubahan Data</h3>
+                                                <div class="box-tab-tools">
+                                                    <a href="#"  onclick="getRevisitRecord('4757')" class="btn btn-primary btn-sm revisitpatient"  data-toggle="modal" title=""><i class="fas fa-exchange-alt"></i> New Visit                                            </a>
+                                                </div>
+                                            </div>
                                             <div class="download_label">Zak Crawkly (380) OPD Details</div>
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover example">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                <div class="widget-body no-padding">
+						
+                                                    <form action="php/demo-comment.php" method="post" id="comment-form" class="smart-form" novalidate="novalidate">
+                                                        
+                                                        <fieldset>
+                                                                <!-- <section class="col col-4"> -->
+                                                                <section class="">
+                                                                    <label class="label">Name</label>
+                                                                    <label class="input"> <i class="icon-append fa fa-user"></i>
+                                                                        <input type="text" name="name">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="">
+                                                                    <label class="label">E-mail</label>
+                                                                    <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
+                                                                        <input type="email" name="email">
+                                                                    </label>
+                                                                </section>
+                                                                <section class="">
+                                                                    <label class="label">Website</label>
+                                                                    <label class="input"> <i class="icon-append fa fa-globe"></i>
+                                                                        <input type="url" name="url">
+                                                                    </label>
+                                                                </section>
+
+                                                            <section>
+                                                                <label class="label">Comment</label>
+                                                                <label class="textarea"> <i class="icon-append fa fa-comment"></i> 										<textarea rows="4" name="comment"></textarea> </label>
+                                                                <div class="note">
+                                                                    You may use these HTML tags and attributes: &lt;a href="" title=""&gt;, &lt;abbr title=""&gt;, &lt;acronym title=""&gt;, &lt;b&gt;, &lt;blockquote cite=""&gt;, &lt;cite&gt;, &lt;code&gt;, &lt;del datetime=""&gt;, &lt;em&gt;, &lt;i&gt;, &lt;q cite=""&gt;, &lt;strike&gt;, &lt;strong&gt;.
+                                                                </div>
+                                                            </section>
+                                                        </fieldset>
+
+                                                        <footer>
+                                                            <button type="submit" name="submit" class="btn btn-primary">
+                                                                Validate Form
+                                                            </button>
+                                                        </footer>
+
+                                                        <div class="message">
+                                                            <i class="fa fa-check fa-lg"></i>
+                                                            <p>
+                                                                Your comment was successfully added!
+                                                            </p>
+                                                        </div>
+                                                    </form>
+                                                    
+                                                </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover ajaxlistvisit" cellspacing="0" width="100%" data-export-title="Zak Crawkly (380) OPD Details">
                                                     <thead>
-                                                        <th>OPD ID</th>
-                                                        <th>Appointment Date</th>
-                                                        <th>Note</th>
+                                                        <th>OPD No</th>
+                                                        <th>Case ID</th>
+                                                        <th>Case ID</th>
                                                         <th class="text-right noExport">Action</th>
                                                     </thead>
                                                     <tbody>
+                                                    	<?php 
+                                                        // Tampilkan data dalam bentuk tabel
+                                                        $data = $function->getDataByKategoris('kontak', 'nik_id', $nik);
+
+                                                        if (!empty($data)) {
+                                                            foreach ($data as $row) {
+                                                                echo '<tr>
+                                                                <td>' . $row['id'] . '</td>
+                                                                <td>' . $row['tipe_kontak'] . '</td>
+                                                                <td>' . $row['nilai_kontak'] . '</td>
+                                                                <td class="text-right noExport">' . $row['tipe_kontak'] . '</td>
+                                                                </tr>';
+                                                            }
+                                                        } else {
+                                                            echo '<tr>
+                                                            <td colspan="7" class="text-center">Tidak ada data yang cocok.</td>
+                                                            </tr>';
+                                                        }
+                                                        ?>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
+                                                
+                                                </div>
+                                            </div>
+
+                                            
                                         </div>
                                     </div>
                                 </div>

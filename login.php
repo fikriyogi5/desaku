@@ -9,24 +9,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     
     // Assuming you have received the data from the client in a POST request
-    $deviceType = $_POST['device_type'];
-    $os = $_POST['operating_system'];
-    $deviceDetails = $_POST['device_details'];
-    $imei = $_POST['imei'];
-    $networkInfo = $_POST['network_info'];
-    $userLocation = $_POST['user_location'];
+    // $deviceType = $_POST['device_type'];
+    // $os = $_POST['operating_system'];
+    // $deviceDetails = $_POST['device_details'];
+    // $imei = $_POST['imei'];
+    // $networkInfo = $_POST['network_info'];
+    // $userLocation = $_POST['user_location'];
 
     // Insert this information into a database table for user/device information
-    $dataToInsert = array(
-        'user_id' => $user_id, // Associating the data with a user
-        'device_type' => $deviceType,
-        'operating_system' => $os,
-        'device_details' => $deviceDetails,
-        'imei' => $imei,
-        'network_info' => $networkInfo,
-        'user_location' => $userLocation,
-        'capture_time' => date('Y-m-d H:i:s')
-    );
+    // $dataToInsert = array(
+    //     'user_id' => $user_id, // Associating the data with a user
+    //     'device_type' => $deviceType,
+    //     'operating_system' => $os,
+    //     'device_details' => $deviceDetails,
+    //     'imei' => $imei,
+    //     'network_info' => $networkInfo,
+    //     'user_location' => $userLocation,
+    //     'capture_time' => date('Y-m-d H:i:s')
+    // );
 
 
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Gantilah 'users' dengan nama tabel pengguna Anda
     $user = $database->read('users', "username = '$username'");
-    $analytic = $database->create('user_device_info', $dataToInsert);
+    // $analytic = $database->create('user_device_info', $dataToInsert);
 
 
     if ($user && password_verify($password, $user[0]['password'])) {
@@ -68,10 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 
     <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
-    <link rel="apple-touch-icon" sizes="180x180" href="public/assets/icons/icon-192x192.png">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="public/assets/icons/icon-192x192.png"> -->
     <!-- Include jQuery first -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="public/css/framework7-icons.css">
+    <script src="scripts/jquery-3.6.0.min.js"></script>
+    <!-- <link rel="stylesheet" href="public/css/framework7-icons.css"> -->
 </head>
 
     <body class="theme-light" data-highlight="highlight-red" data-gradient="body-default">
@@ -96,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="color-highlight text-start font-15">Untuk masuk, pastikan Anda sudah terdaftar di desa.</p>
                                 <div class="input-style has-borders has-icon validate-field mt-5">
                                     <i class="fa fa-user"></i>
-                                    <input type="number" class="form-control validate-name" id="form1a" name="username" placeholder="username/No. Hp" />
-                                    <label for="form1a" class="color-black font-15 mt-n1">username/No. Hp</label>
+                                    <input type="number" class="form-control validate-name" id="form1a" name="username" placeholder="Masukkan NIK" />
+                                    <label for="form1a" class="color-black font-15 mt-n1">NIK</label>
                                     <i class="fa fa-times disabled invalid color-red-dark"></i>
                                     <i class="fa fa-check disabled valid color-green-dark"></i>
                                     <!-- <em>(required)</em> -->
@@ -137,8 +137,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </div>
         
-    <script type="text/javascript" src="bootstrap.min.js"></script>
-    <script type="text/javascript" src="custom.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
     <script>
         function togglePassword() {
             var passwordInput = document.getElementById("form3a");

@@ -43,7 +43,7 @@ echo generateHeader($headerOptions);
 </form>
         </div>
     </div>
-    <div class"card">
+    <div class="card">
     <?php
 include "class/class.search.php";
 if (isset($_POST['submit'])) {

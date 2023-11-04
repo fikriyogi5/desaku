@@ -2,6 +2,7 @@
 // Sisipkan kelas Database
 require_once 'database.php';
 require_once 'auth.php';
+require_once 'config.php';
     // Periksa apakah pengguna telah login, jika tidak, alihkan ke halaman login
 
 $database = new Database($dbConfig);

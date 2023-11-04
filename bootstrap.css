@@ -10975,7 +10975,7 @@ input[type=number] {
 
 #walkthrough-slider .splide__pagination {
     /* padding-bottom: calc(20px + (env(safe-area-inset-bottom))*1.1); */
-    bottom: calc(190px + (env(safe-area-inset-bottom))*1.1);
+    bottom: calc(200px + (env(safe-area-inset-bottom))*1.1);
 }
 
 #walkthrough-slider .card-bottom,[data-card-height=cover] .card-bottom {
@@ -11606,7 +11606,7 @@ input[type=number] {
 }
 
 .bg-white {
-    background-color: #fff!important
+    background-color: #fff!important;
 }
 
 .bg-black {
@@ -11662,7 +11662,7 @@ input[type=number] {
     opacity: .7
 }
 
-.theme-dark #footer-bar a i,.theme-dark #footer-bar a span .theme-dark p strong,.theme-dark h1,.theme-dark h2,.theme-dark h3,.theme-dark h4,.theme-dark h5,.theme-dark h6 {
+.theme-dark #footer-bar a i, .theme-dark #footer-bar a span .theme-dark p strong, .theme-dark h1, .theme-dark h2, .theme-dark h3, .theme-dark h4, .theme-dark h5, .theme-dark h6, label {
     color: #fff
 }
 
@@ -11687,8 +11687,8 @@ input[type=number] {
     background-color: #0f1117!important
 }
 
-.theme-dark #preloader,.theme-dark .card,.theme-dark .footer,.theme-dark .form-floating-over>.form-control:focus~label,.theme-dark .form-floating-over>.form-control:not(:placeholder-shown)~label,.theme-dark .form-floating-over>.form-select~label, .pertama:before {
-    background-color: #0f1117
+.theme-dark #preloader, .theme-dark .card, .theme-dark .footer, .theme-dark .form-floating-over>.form-control:focus~label, .theme-dark .form-floating-over>.form-control:not(:placeholder-shown)~label, .theme-dark .form-floating-over>.form-select~label, .pertama:before, .menu-box-left {
+    background-color: #0f1117;
 }
 
 .theme-dark .link-list-2 a,.theme-dark .link-list-3 a,.theme-dark .pricing-1,.theme-dark .pricing-2,.theme-dark .pricing-3,.theme-dark .pricing-4,.theme-dark .search-box,.theme-dark .vcard-field,.theme-dark table {
@@ -12924,7 +12924,7 @@ input[type=number] {
 }
 
 .bg-white {
-    background-color: #fff!important
+    background-color: #fff!important;
 }
 
 .bg-black {
@@ -13796,5 +13796,9 @@ input[type=number] {
 }
 
 .tombol:hover {
-    background-color: #45a049;
+    background-color: #6236ff;
+}
+.hover:hover {
+    background-color: #6236ff;
+    color: white!important;
 }

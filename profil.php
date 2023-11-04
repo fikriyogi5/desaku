@@ -2,6 +2,7 @@
 // Sisipkan kelas Database
 require_once 'database.php';
 require_once 'auth.php';
+require_once 'config.php';
     // Periksa apakah pengguna telah login, jika tidak, alihkan ke halaman login
     // $id = $_GET['id'];
     $database = new Database($dbConfig);
@@ -29,12 +30,11 @@ if (empty($_GET['id']) ) {
     // header('Location: index.php');
     // exit;
     $mahasiswa = $database->read('warga', "nik=".$_SESSION['user_id']."");    
-    $hide = '<a href="update-profil.php" class="btn btn-full btn-l rounded-sm font-800 text-uppercase bg-highlight" >Update Profil</a>';
-
-
+    $hide = $hide = '<a href="update-profil.php" class="btn btn-full btn-l rounded-sm font-800 text-uppercase bg-highlight" >Update Profil</a>';
 } else {
     $mahasiswa = $database->read('warga', "nik=".$_GET['id']."");
-    $hide = '';
+    $hide = "";
+
 }
 
 

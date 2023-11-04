@@ -2,7 +2,7 @@
 // Database configuration
 $config = array(
     'db_host' => 'localhost',
-    'db_name' => 'test',
+    'db_name' => 'desaku',
     'db_user' => 'root',
     'db_pass' => '',
 );

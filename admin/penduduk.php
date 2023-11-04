@@ -3,7 +3,6 @@
 // include 'php/db.php'; // Gantilah dengan file koneksi Anda
 // $data = new Database();
 
-
 require_once('php/functions.php'); // Memanggil file functions.php
 
 $data = new Functions(); // Membuat objek Functions

@@ -1,5 +1,13 @@
 <?php
 require_once 'config.php';
+function encrypt($data, $key) {
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
+$key = "vector";
+
 
 $table = $_GET['table'];
 
@@ -61,7 +69,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         if ($column === 'nama' || $column === 'nik') {
             // Modify the link destination based on the table
             if ($table === 'warga') {
-                $nestedData[] = "<a href='profile-2.php?id=" . $row['id'] . "'>" . $row[$column] . "</a>";
+                $nestedData[] = "<a href='profile-2.php?id=" . $encrypted = encrypt($row['id'], $key) . "'>" . $row[$column] . "</a>";
             } elseif ($table === 'laporan_masuk') {
                 $nestedData[] = "<a href='detail.php?id=" . $row[$column] . "'>" . $row[$column] . "</a>";
             } elseif ($table === 'desa') {
